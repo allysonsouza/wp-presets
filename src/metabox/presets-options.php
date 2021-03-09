@@ -10,14 +10,14 @@ if ( file_exists( dirname( __FILE__ ) . '/../../vendors/cmb2/init.php' ) ) {
 /**
  * Define the metabox and field configurations.
  */
-function prewoo_settings() {
+function wppresets_settings() {
 
 	/**
 	 * Initiate the metabox
 	 */
 	$cmb = new_cmb2_box( array(
-		'id'            => 'prewoo_settings_metabox',
-		'title'         => __( 'Settings', 'presets-for-woocommerce' ),
+		'id'            => 'wppresets_settings_metabox',
+		'title'         => __( 'Settings', 'wppresets' ),
 		'object_types'  => array( 'presets', ), // Post type
 		'context'       => 'normal',
 		'priority'      => 'high',
@@ -30,4 +30,4 @@ function prewoo_settings() {
 
 	}
 
-add_action( 'cmb2_admin_init', 'prewoo_settings' );
+add_action( 'cmb2_admin_init', 'wppresets_settings' );

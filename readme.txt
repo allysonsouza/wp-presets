@@ -1,7 +1,6 @@
-=== Presets for WooCommerce ===
+=== WP Presets ===
 Contributors: allysonsouza, felipeloureirosantos
-Donate link: https://wordpressfoundation.org/donate/
-Tags: tests, woocommerce, debug
+Tags: tests, debug
 Requires at least: 4.5
 Tested up to: 5.6.2
 Requires PHP: 7.0
@@ -9,7 +8,7 @@ Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Presets that you can use for filling test data on WooCommerce
+Presets that you can use for filling test data on WordPress
 
 == Description ==
 

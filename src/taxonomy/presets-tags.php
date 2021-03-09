@@ -5,29 +5,29 @@
  *
  * @return void
  */
-function prewoo_tags() {
+function wppresets_tags() {
 
 	$labels = array(
-		'name'                       => _x( 'Tags', 'Taxonomy General Name', 'presets-for-woocommerce' ),
-		'singular_name'              => _x( 'Tag', 'Taxonomy Singular Name', 'presets-for-woocommerce' ),
-		'menu_name'                  => __( 'Tags', 'presets-for-woocommerce' ),
-		'all_items'                  => __( 'All Items', 'presets-for-woocommerce' ),
-		'parent_item'                => __( 'Parent Item', 'presets-for-woocommerce' ),
-		'parent_item_colon'          => __( 'Parent Item:', 'presets-for-woocommerce' ),
-		'new_item_name'              => __( 'New Item Name', 'presets-for-woocommerce' ),
-		'add_new_item'               => __( 'Add New Item', 'presets-for-woocommerce' ),
-		'edit_item'                  => __( 'Edit Item', 'presets-for-woocommerce' ),
-		'update_item'                => __( 'Update Item', 'presets-for-woocommerce' ),
-		'view_item'                  => __( 'View Item', 'presets-for-woocommerce' ),
-		'separate_items_with_commas' => __( 'Separate items with commas', 'presets-for-woocommerce' ),
-		'add_or_remove_items'        => __( 'Add or remove items', 'presets-for-woocommerce' ),
-		'choose_from_most_used'      => __( 'Choose from the most used', 'presets-for-woocommerce' ),
-		'popular_items'              => __( 'Popular Items', 'presets-for-woocommerce' ),
-		'search_items'               => __( 'Search Items', 'presets-for-woocommerce' ),
-		'not_found'                  => __( 'Not Found', 'presets-for-woocommerce' ),
-		'no_terms'                   => __( 'No items', 'presets-for-woocommerce' ),
-		'items_list'                 => __( 'Items list', 'presets-for-woocommerce' ),
-		'items_list_navigation'      => __( 'Items list navigation', 'presets-for-woocommerce' ),
+		'name'                       => _x( 'Tags', 'Taxonomy General Name', 'wppresets' ),
+		'singular_name'              => _x( 'Tag', 'Taxonomy Singular Name', 'wppresets' ),
+		'menu_name'                  => __( 'Tags', 'wppresets' ),
+		'all_items'                  => __( 'All Items', 'wppresets' ),
+		'parent_item'                => __( 'Parent Item', 'wppresets' ),
+		'parent_item_colon'          => __( 'Parent Item:', 'wppresets' ),
+		'new_item_name'              => __( 'New Item Name', 'wppresets' ),
+		'add_new_item'               => __( 'Add New Item', 'wppresets' ),
+		'edit_item'                  => __( 'Edit Item', 'wppresets' ),
+		'update_item'                => __( 'Update Item', 'wppresets' ),
+		'view_item'                  => __( 'View Item', 'wppresets' ),
+		'separate_items_with_commas' => __( 'Separate items with commas', 'wppresets' ),
+		'add_or_remove_items'        => __( 'Add or remove items', 'wppresets' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'wppresets' ),
+		'popular_items'              => __( 'Popular Items', 'wppresets' ),
+		'search_items'               => __( 'Search Items', 'wppresets' ),
+		'not_found'                  => __( 'Not Found', 'wppresets' ),
+		'no_terms'                   => __( 'No items', 'wppresets' ),
+		'items_list'                 => __( 'Items list', 'wppresets' ),
+		'items_list_navigation'      => __( 'Items list navigation', 'wppresets' ),
 	);
 	$args = array(
 		'labels'                     => $labels,
@@ -38,7 +38,7 @@ function prewoo_tags() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => false,
 	);
-	register_taxonomy( 'prewoo_tags', array( 'prewoo_presets' ), $args );
+	register_taxonomy( 'wppresets_tags', array( 'wppresets_presets' ), $args );
 
 }
-add_action( 'init', 'prewoo_tags', 0 );
+add_action( 'init', 'wppresets_tags', 0 );
