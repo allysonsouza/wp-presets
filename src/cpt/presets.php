@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Create CPT 'wppresets_presets'
+ * Create CPT 'wppresets'
  *
  * @return void
  */
@@ -55,7 +55,7 @@ function wppresets_presets() {
 		'publicly_queryable'    => false,
 		'capability_type'       => 'page',
 	);
-	register_post_type( 'wppresets_presets', $args );
+	register_post_type( 'wppresets', $args );
 
 }
 add_action( 'init', 'wppresets_presets', 0 );
