@@ -38,7 +38,7 @@ function wppresets_tags() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => false,
 	);
-	register_taxonomy( 'wppresets_tags', array( 'wppresets_presets' ), $args );
+	register_taxonomy( 'wppresets_tags', array( 'wppresets' ), $args );
 
 }
 add_action( 'init', 'wppresets_tags', 0 );
