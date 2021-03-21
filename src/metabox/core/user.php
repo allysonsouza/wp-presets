@@ -29,25 +29,25 @@ $cmb->add_field( array(
 ) );
 
 $cmb->add_field( array(
-	'name'    => __( 'Nickname', 'wppresets' ),
-	'id'      => $prefix_meta . 'nickname',
+	'name'    => __( 'Display Name', 'wppresets' ),
+	'id'      => $prefix_meta . 'display_name',
 	'type'    => 'text',
 ) );
 
 $cmb->add_field( array(
 	'name' => __( 'Website', 'wppresets' ),
-	'id'   => $prefix_meta . 'website',
+	'id'   => $prefix_meta . 'user_url',
 	'type' => 'text_url',
 ) );
 
 $cmb->add_field( array(
 	'name' => __( 'Email', 'wppresets' ),
-	'id'   => $prefix_meta . 'email',
+	'id'   => $prefix_meta . 'user_email',
 	'type' => 'text_email',
 ) );
 
 $cmb->add_field( array(
 	'name' => __( 'Bio', 'wppresets' ),
-	'id' => $prefix_meta . 'bio',
+	'id' => $prefix_meta . 'description',
 	'type' => 'textarea'
 ) );
