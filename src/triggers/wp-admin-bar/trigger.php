@@ -1,7 +1,10 @@
 <?php
 
+add_action( 'muplugins_loaded', 'wppresets_query' );
 
 function wppresets_admin_bar_item ( WP_Admin_Bar $admin_bar ) {
+
+
     if ( ! current_user_can( 'manage_options' ) ) {
         return;
     }
@@ -15,33 +18,28 @@ function wppresets_admin_bar_item ( WP_Admin_Bar $admin_bar ) {
             'title' => __( 'Presets', 'textdomain' ), //This title will show on hover
         ]
     ) );
+    
+    $presets_ids = get_posts(array(
+        'fields'          => 'ids',
+        'posts_per_page'  => -1,
+        'post_type' => 'wppresets'
+    ));
 
-    $args = array(
-        'post_type'              => array( 'wppresets' ),
-        'post_status'            => array( 'publish' ),
-    );
+    foreach ($presets_ids as $id) {
 
-    $presets = new WP_Query( $args );
+    $admin_bar->add_menu( array(
+        'id'    => 'presets-trigger_' . $id,
+        'parent' => 'presets-trigger',
+        'group'  => null,
+        'title' => get_the_title( $id ), //you can use img tag with image link. it will show the image icon Instead of the title.
+        'href'  => admin_url( 'edit.php?post_type=wppresets&wppresets-trigger=' . $id),
+        'meta' => [
+            'title' => get_the_title( $id ), //This title will show on hover
+        ]
+    ) );
 
-	if ( $presets->have_posts() ) :
-		while ( $presets->have_posts() ) :
-			$presets->the_post();
-
-            $admin_bar->add_menu( array(
-                'id'    => 'presets-trigger_' . get_the_ID(),
-                'parent' => 'presets-trigger',
-                'group'  => null,
-                'title' => get_the_title(), //you can use img tag with image link. it will show the image icon Instead of the title.
-                'href'  => admin_url( 'edit.php?post_type=wppresets&wppresets-trigger=' . get_the_ID() ),
-                'meta' => [
-                    'title' => get_the_title(), //This title will show on hover
-                ]
-            ) );
-        
-		endwhile;
-        wp_reset_query();
-	endif;
-
+    }
 
 }
-add_action( 'admin_bar_render', 'wppresets_admin_bar_item', 100 );
+
+add_action( 'admin_bar_menu', 'wppresets_admin_bar_item', 100 );
