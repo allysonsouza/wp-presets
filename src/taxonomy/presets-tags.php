@@ -29,14 +29,14 @@ function wppresets_tags() {
 		'items_list'                 => __( 'Items list', 'wppresets' ),
 		'items_list_navigation'      => __( 'Items list navigation', 'wppresets' ),
 	);
-	$args = array(
-		'labels'                     => $labels,
-		'hierarchical'               => false,
-		'public'                     => true,
-		'show_ui'                    => true,
-		'show_admin_column'          => true,
-		'show_in_nav_menus'          => true,
-		'show_tagcloud'              => false,
+	$args   = array(
+		'labels'            => $labels,
+		'hierarchical'      => false,
+		'public'            => true,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'show_in_nav_menus' => true,
+		'show_tagcloud'     => false,
 	);
 	register_taxonomy( 'wppresets_tags', array( 'wppresets' ), $args );
 

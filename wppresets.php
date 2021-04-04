@@ -9,11 +9,11 @@
  * Domain Path:     /languages
  * Version:         0.1.0
  *
- * @package         WP_Presets
+ * @package WP_Presets
  */
 
-include_once plugin_dir_path( __FILE__ ) . 'src/cpt/presets.php';
-include_once plugin_dir_path( __FILE__ ) . 'src/taxonomy/presets-tags.php';
-include_once plugin_dir_path( __FILE__ ) . 'src/metabox/presets-options.php';
-include_once plugin_dir_path( __FILE__ ) . 'src/triggers/triggers.php';
-include_once plugin_dir_path( __FILE__ ) . 'src/actions/apply-presets.php';
+require_once plugin_dir_path( __FILE__ ) . 'src/cpt/presets.php';
+require_once plugin_dir_path( __FILE__ ) . 'src/taxonomy/presets-tags.php';
+require_once plugin_dir_path( __FILE__ ) . 'src/metabox/presets-options.php';
+require_once plugin_dir_path( __FILE__ ) . 'src/triggers/triggers.php';
+require_once plugin_dir_path( __FILE__ ) . 'src/actions/apply-presets.php';
