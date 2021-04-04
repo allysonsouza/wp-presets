@@ -1,12 +1,10 @@
 <?php
 /**
  * Plugin Name:     WP Presets
- * Plugin URI:      PLUGIN SITE HERE
- * Description:     PLUGIN DESCRIPTION HERE
- * Author:          YOUR NAME HERE
- * Author URI:      YOUR SITE HERE
+ * Description:     The WP Presets plugin allows you to fill your WordPress with demo data in just a few seconds allowing you to test it without the need to manually change the settings every time.
+ * Author:          WP Presets contributors
+ * Author URI:      https://github.com/felipelousantos/wp-presets/graphs/contributors
  * Text Domain:     wp-presets
- * Domain Path:     /languages
  * Version:         0.1.0
  *
  * @package WP_Presets
