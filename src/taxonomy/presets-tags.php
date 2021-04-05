@@ -1,33 +1,33 @@
 <?php
 
 /**
- * Create taxonomy 'Presets Tags'
+ * Create taxonomy 'Tags' for the Presets CPT.
  *
  * @return void
  */
-function wppresets_tags() {
+function presets_tags() {
 
 	$labels = array(
-		'name'                       => _x( 'Tags', 'Taxonomy General Name', 'wppresets' ),
-		'singular_name'              => _x( 'Tag', 'Taxonomy Singular Name', 'wppresets' ),
-		'menu_name'                  => __( 'Tags', 'wppresets' ),
-		'all_items'                  => __( 'All Items', 'wppresets' ),
-		'parent_item'                => __( 'Parent Item', 'wppresets' ),
-		'parent_item_colon'          => __( 'Parent Item:', 'wppresets' ),
-		'new_item_name'              => __( 'New Item Name', 'wppresets' ),
-		'add_new_item'               => __( 'Add New Item', 'wppresets' ),
-		'edit_item'                  => __( 'Edit Item', 'wppresets' ),
-		'update_item'                => __( 'Update Item', 'wppresets' ),
-		'view_item'                  => __( 'View Item', 'wppresets' ),
-		'separate_items_with_commas' => __( 'Separate items with commas', 'wppresets' ),
-		'add_or_remove_items'        => __( 'Add or remove items', 'wppresets' ),
-		'choose_from_most_used'      => __( 'Choose from the most used', 'wppresets' ),
-		'popular_items'              => __( 'Popular Items', 'wppresets' ),
-		'search_items'               => __( 'Search Items', 'wppresets' ),
-		'not_found'                  => __( 'Not Found', 'wppresets' ),
-		'no_terms'                   => __( 'No items', 'wppresets' ),
-		'items_list'                 => __( 'Items list', 'wppresets' ),
-		'items_list_navigation'      => __( 'Items list navigation', 'wppresets' ),
+		'name'                       => _x( 'Tags', 'Taxonomy General Name', 'presets' ),
+		'singular_name'              => _x( 'Tag', 'Taxonomy Singular Name', 'presets' ),
+		'menu_name'                  => __( 'Tags', 'presets' ),
+		'all_items'                  => __( 'All tags', 'presets' ),
+		'parent_item'                => __( 'Parent tag', 'presets' ),
+		'parent_item_colon'          => __( 'Parent tag:', 'presets' ),
+		'new_item_name'              => __( 'New tag name', 'presets' ),
+		'add_new_item'               => __( 'Add new tag', 'presets' ),
+		'edit_item'                  => __( 'Edit tag', 'presets' ),
+		'update_item'                => __( 'Update tag', 'presets' ),
+		'view_item'                  => __( 'View tag', 'presets' ),
+		'separate_items_with_commas' => __( 'Separate tags with commas', 'presets' ),
+		'add_or_remove_items'        => __( 'Add or remove tags', 'presets' ),
+		'choose_from_most_used'      => __( 'Choose from the most used', 'presets' ),
+		'popular_items'              => __( 'Popular tags', 'presets' ),
+		'search_items'               => __( 'Search tags', 'presets' ),
+		'not_found'                  => __( 'Not found', 'presets' ),
+		'no_terms'                   => __( 'No tags', 'presets' ),
+		'items_list'                 => __( 'Tags list', 'presets' ),
+		'items_list_navigation'      => __( 'Tags list navigation', 'presets' ),
 	);
 	$args   = array(
 		'labels'            => $labels,
@@ -38,7 +38,7 @@ function wppresets_tags() {
 		'show_in_nav_menus' => true,
 		'show_tagcloud'     => false,
 	);
-	register_taxonomy( 'wppresets_tags', array( 'wppresets' ), $args );
+	register_taxonomy( 'presets_tags', array( 'presets' ), $args );
 
 }
-add_action( 'init', 'wppresets_tags', 0 );
+add_action( 'init', 'presets_tags', 0 );

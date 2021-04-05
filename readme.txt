@@ -1,4 +1,4 @@
-=== WP Presets ===
+=== Presets ===
 Contributors: allysonsouza, felipeloureirosantos
 Tags: tests, debug
 Requires at least: 5.0
@@ -8,11 +8,11 @@ Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-The WP Presets plugin allows you to fill your WordPress with demo data in just a few seconds allowing you to test it without the need to manually change the settings every time.
+The Presets plugin allows you to fill your WordPress with demo data in just a few seconds allowing you to test it without the need to manually change the settings every time.
 
 == Description ==
 
-The WP Presets plugin allows you to fill your WordPress with previously defined demo/test data in just a few seconds allowing you to test it without the need to manually change the settings every time.
+The Presets plugin allows you to fill your WordPress with previously defined demo/test data in just a few seconds allowing you to test it without the need to manually change the settings every time.
 
 This plugin hasn't been developed to be working on production sites. The goal with it is mostly to allow you to test plugins that require you to change the settings all the time.
 

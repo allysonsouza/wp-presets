@@ -1,10 +1,10 @@
 <?php
 
-function wppresets_core_user_apply_meta() {
+function presets_core_user_apply_meta() {
 	$prefix = 'core_user_';
 
 	$userdata = array(
-		'ID' => get_current_user_id(),    //(int) User ID. If supplied, the user will be updated.
+		'ID' => get_current_user_id(),
 	);
 
 	$fields = array(

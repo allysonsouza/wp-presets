@@ -1,4 +1,4 @@
-The WP Presets plugin allows you to fill your WordPress with previously defined demo/test data in just a few seconds allowing you to test it without the need to manually change the settings every time.
+Presets is a WordPress plugin that allows you to fill your WordPress with previously defined demo/test data in just a few seconds allowing you to test it without the need to manually change the settings every time.
 
 This plugin hasn't been developed to be working on production sites. The goal with it is mostly to allow you to test plugins that require you to change the settings all the time.
 

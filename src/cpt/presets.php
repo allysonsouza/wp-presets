@@ -1,43 +1,43 @@
 <?php
 
 /**
- * Create CPT 'wppresets'
+ * Create CPT 'presets'
  *
  * @return void
  */
-function wppresets_presets() {
+function presets_cpt() {
 
 	$labels = array(
-		'name'                  => _x( 'Presets', 'Post Type General Name', 'wppresets' ),
-		'singular_name'         => _x( 'Preset', 'Post Type Singular Name', 'wppresets' ),
-		'menu_name'             => __( 'Presets', 'wppresets' ),
-		'name_admin_bar'        => __( 'Preset', 'wppresets' ),
-		'archives'              => __( 'Item Archives', 'wppresets' ),
-		'attributes'            => __( 'Item Attributes', 'wppresets' ),
-		'parent_item_colon'     => __( 'Parent Item:', 'wppresets' ),
-		'all_items'             => __( 'All Items', 'wppresets' ),
-		'add_new_item'          => __( 'Add New Item', 'wppresets' ),
-		'add_new'               => __( 'Add New', 'wppresets' ),
-		'new_item'              => __( 'New Item', 'wppresets' ),
-		'edit_item'             => __( 'Edit Item', 'wppresets' ),
-		'update_item'           => __( 'Update Item', 'wppresets' ),
-		'view_item'             => __( 'View Item', 'wppresets' ),
-		'view_items'            => __( 'View Items', 'wppresets' ),
-		'search_items'          => __( 'Search Item', 'wppresets' ),
-		'not_found'             => __( 'Not found', 'wppresets' ),
-		'not_found_in_trash'    => __( 'Not found in Trash', 'wppresets' ),
-		'featured_image'        => __( 'Featured Image', 'wppresets' ),
-		'set_featured_image'    => __( 'Set featured image', 'wppresets' ),
-		'remove_featured_image' => __( 'Remove featured image', 'wppresets' ),
-		'use_featured_image'    => __( 'Use as featured image', 'wppresets' ),
-		'insert_into_item'      => __( 'Insert into item', 'wppresets' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this item', 'wppresets' ),
-		'items_list'            => __( 'Items list', 'wppresets' ),
-		'items_list_navigation' => __( 'Items list navigation', 'wppresets' ),
-		'filter_items_list'     => __( 'Filter items list', 'wppresets' ),
+		'name'                    => _x( 'Presets', 'Post Type General Name', 'presets' ),
+		'singular_name'           => _x( 'Preset', 'Post Type Singular Name', 'presets' ),
+		'menu_name'               => __( 'Presets', 'presets' ),
+		'name_admin_bar'          => __( 'Preset', 'presets' ),
+		'archives'                => __( 'Preset Archives', 'presets' ),
+		'attributes'              => __( 'Preset Attributes', 'presets' ),
+		'parent_Preset_colon'     => __( 'Parent Preset:', 'presets' ),
+		'all_Presets'             => __( 'All Presets', 'presets' ),
+		'add_new_Preset'          => __( 'Add New Preset', 'presets' ),
+		'add_new'                 => __( 'Add New', 'presets' ),
+		'new_Preset'              => __( 'New Preset', 'presets' ),
+		'edit_Preset'             => __( 'Edit Preset', 'presets' ),
+		'update_Preset'           => __( 'Update Preset', 'presets' ),
+		'view_Preset'             => __( 'View Preset', 'presets' ),
+		'view_Presets'            => __( 'View Presets', 'presets' ),
+		'search_Presets'          => __( 'Search Preset', 'presets' ),
+		'not_found'               => __( 'Not found', 'presets' ),
+		'not_found_in_trash'      => __( 'Not found in Trash', 'presets' ),
+		'featured_image'          => __( 'Featured Image', 'presets' ),
+		'set_featured_image'      => __( 'Set featured image', 'presets' ),
+		'remove_featured_image'   => __( 'Remove featured image', 'presets' ),
+		'use_featured_image'      => __( 'Use as featured image', 'presets' ),
+		'insert_into_Preset'      => __( 'Insert into Preset', 'presets' ),
+		'uploaded_to_this_Preset' => __( 'Uploaded to this Preset', 'presets' ),
+		'Presets_list'            => __( 'Presets list', 'presets' ),
+		'Presets_list_navigation' => __( 'Presets list navigation', 'presets' ),
+		'filter_Presets_list'     => __( 'Filter Presets list', 'presets' ),
 	);
 	$args   = array(
-		'label'               => __( 'Preset', 'wppresets' ),
+		'label'               => __( 'Preset', 'presets' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title' ),
 		'taxonomies'          => array(),
@@ -55,7 +55,7 @@ function wppresets_presets() {
 		'publicly_queryable'  => false,
 		'capability_type'     => 'page',
 	);
-	register_post_type( 'wppresets', $args );
+	register_post_type( 'presets', $args );
 
 }
-add_action( 'init', 'wppresets_presets', 0 );
+add_action( 'init', 'presets_cpt', 0 );
