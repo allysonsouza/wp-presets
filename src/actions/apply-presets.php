@@ -10,7 +10,7 @@ function get_presets_meta( $prefix, $field ) {
 
 function presets_admin_notice__success() {    ?>
 	<div class="notice notice-success is-dismissible">
-		<p><?php _e( 'The settings were applied as expected!', 'presets' ) . var_dump( get_post_meta( $_GET['presets-applied'], '_' ) ); ?></p>
+		<p><?php _e( 'The settings were applied as expected!', 'presets' ) . var_dump( get_post_meta( $_GET['presets-applied'] ) ); ?></p>
 	</div>
 	<?php
 }
