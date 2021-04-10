@@ -12,10 +12,12 @@ function presets_core_plugins_create_metabox() {
 
 	$options = array();
 
-	foreach ( $plugins as $path => $meta ) {
+	foreach ( $plugins as $plugin => $meta ) {
 
-		if ( 'wp-presets/presets.php' !== $path ) {
-			$options[ $path ] = $meta['Name'];
+		global $presets_plugin_file_name;
+
+		if ( $presets_plugin_file_name !== $plugin ) {
+			$options[ $plugin ] = $meta['Name'];
 		}
 	}
 

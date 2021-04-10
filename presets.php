@@ -10,6 +10,8 @@
  * @package Presets
  */
 
+$presets_plugin_file_name = str_replace( plugin_dir_path( __DIR__ ), '', $dir = plugin_dir_path( __FILE__ ) ) . 'presets.php';
+
 require_once plugin_dir_path( __FILE__ ) . 'src/cpt/presets.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/taxonomy/presets-tags.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/metabox/presets-options.php';
