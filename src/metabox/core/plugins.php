@@ -13,8 +13,10 @@ function presets_core_plugins_create_metabox() {
 	$options = array();
 
 	foreach ( $plugins as $path => $meta ) {
-		$options[ $path ] = $meta['Name'];
 
+		if ( 'wp-presets/presets.php' !== $path ) {
+			$options[ $path ] = $meta['Name'];
+		}
 	}
 
 	/**
@@ -26,7 +28,7 @@ function presets_core_plugins_create_metabox() {
 			'title'        => __( 'Installed plugins', 'presets' ),
 			'object_types' => array( 'presets' ), // Post type
 			'context'      => 'normal',
-			'priority'     => 'high',
+			'priority'     => 'low',
 			'show_names'   => true, // Show field names on the left
 		// 'cmb_styles' => false, // false to disable the CMB stylesheet
 		// 'closed'     => true, // Keep the metabox closed by default
