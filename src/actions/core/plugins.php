@@ -1,25 +1,37 @@
 <?php
 
 function presets_core_plugin_apply_meta() {
-	$prefix = 'core_plugin_';
 
-	$plugindata = array(
-		'ID' => get_current_plugin_id(),
-	);
+	$selected_plugins = get_presets_meta( 'core_plugins_', 'activate' );
 
-	$fields = array(
-		'plugins',
-	);
+	if ( '' === $selected_plugins ) {
 
-	foreach ( $fields as $field ) {
-		$meta = get_presets_meta( $prefix, $field );
-		if ( ! empty( $meta ) ) {
-			$plugindata[ $field ] = $meta;
-		}
+		$selected_plugins = array();
+
 	}
 
-	wp_update_plugin( wp_slash( $plugindata ) );
+	global $presets_plugin_file_name;
 
+	// Variable with a filter of plugins that should be deactivated. Presets goes on the filter as default.
+
+	$skip_deactivate_plugins = array_merge( array( $presets_plugin_file_name ), $selected_plugins );
+
+	$deactivate_plugins = array_diff( get_option( 'active_plugins' ), $skip_deactivate_plugins );
+
+	// var_dump( $deactivate_plugins );
+
+	deactivate_plugins( $deactivate_plugins );
+
+	//wp_update_plugin( wp_slash( $plugindata ) );
+	//$activate_plugins = array_diff($selected_plugins);
+
+	//var_dump( presets_get_option() );
+
+	$skip_activate_plugins = array_merge( array( $presets_plugin_file_name ) );
+
+	$activate_plugins = array_diff( $selected_plugins, $skip_activate_plugins );
+
+	activate_plugins( $activate_plugins );
 }
 
-// add_action( 'presets_apply_meta', 'presets_core_plugin_apply_meta' );
+add_action( 'presets_apply_meta', 'presets_core_plugin_apply_meta' );
