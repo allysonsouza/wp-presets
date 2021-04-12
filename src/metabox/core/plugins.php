@@ -46,7 +46,7 @@ function presets_core_plugins_create_metabox() {
 	$cmb->add_field(
 		array(
 			'name'    => __( 'Activate Plugins', 'presets' ),
-			'desc'    => __( 'Select the plugins', 'presets' ),
+			'desc'    => __( 'Select the plugins that should get activated when this preset gets triggered. If the plugin is not selected, it is going to be deactivated. You are able to <a href="edit.php?post_type=presets&page=presets_advanced_settings">skip specific plugins from being deactivated/activated on the plugin settings</a>.', 'presets' ),
 			'id'      => $prefix_meta . 'activate',
 			'type'    => 'multicheck',
 			'options' => $options,
