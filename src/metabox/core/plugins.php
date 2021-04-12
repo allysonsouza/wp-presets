@@ -16,7 +16,13 @@ function presets_core_plugins_create_metabox() {
 
 		global $presets_plugin_file_name;
 
-		if ( $presets_plugin_file_name !== $plugin ) {
+		$manually_skipped_plugins = cmb2_get_option( 'presets_advanced_settings', 'skip_plugins', true );
+
+		if ( false === is_array( $manually_skipped_plugins ) ) {
+			$manually_skipped_plugins = array();
+		}
+
+		if ( $presets_plugin_file_name !== $plugin && ! in_array( $plugin, $manually_skipped_plugins, true ) ) {
 			$options[ $plugin ] = $meta['Name'];
 		}
 	}
