@@ -36,9 +36,7 @@ function presets_register_advanced_settings() {
 
 	foreach ( $plugins as $plugin => $meta ) {
 
-		global $presets_plugin_file_name;
-
-		if ( $presets_plugin_file_name !== $plugin ) {
+		if ( presets_plugin_filename() !== $plugin ) {
 			$options[ $plugin ] = $meta['Name'];
 		}
 	}
