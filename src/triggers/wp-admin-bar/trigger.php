@@ -1,7 +1,5 @@
 <?php
 
-add_action( 'muplugins_loaded', 'presets_query' );
-
 function presets_admin_bar_item( WP_Admin_Bar $admin_bar ) {
 
 	if ( ! current_user_can( 'manage_options' ) ) {
