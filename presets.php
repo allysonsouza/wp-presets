@@ -10,6 +10,11 @@
  * @package Presets
  */
 
+
+/**
+ * Function outputs the plugin directory with the root file name.
+ *
+ */
 function presets_plugin_filename() {
 	return str_replace( plugin_dir_path( __DIR__ ), '', $dir = plugin_dir_path( __FILE__ ) ) . 'presets.php';
 }

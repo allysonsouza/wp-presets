@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Funtion to hook code that creates the plugin module metabox.
+ */
+
 function presets_core_plugins_create_metabox() {
 
 	$prefix_meta = 'presets_core_plugins_';

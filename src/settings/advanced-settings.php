@@ -52,6 +52,8 @@ function presets_register_advanced_settings() {
 	);
 }
 
+add_action( 'cmb2_admin_init', 'presets_register_advanced_settings' );
+
 /**
  * Wrapper function around cmb2_get_option
  * @since  0.1.0
@@ -78,5 +80,3 @@ function presets_get_option( $key = '', $default = false ) {
 
 	return $val;
 }
-
-add_action( 'cmb2_admin_init', 'presets_register_advanced_settings' );

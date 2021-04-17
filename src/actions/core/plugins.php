@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Funtion to hook code that should be applied for the plugin module when a preset get triggered.
+ */
+
 function presets_core_plugin_apply_meta() {
 
 	$selected_plugins = get_presets_meta( 'core_plugins_', 'activate' );
@@ -21,12 +25,7 @@ function presets_core_plugin_apply_meta() {
 
 	$deactivate_plugins = array_diff( get_option( 'active_plugins' ), $skip_deactivate_plugins );
 
-	// var_dump( $deactivate_plugins );
-
 	deactivate_plugins( $deactivate_plugins );
-
-	//wp_update_plugin( wp_slash( $plugindata ) );
-	//$activate_plugins = array_diff($selected_plugins);
 
 	$skip_activate_plugins = array_merge( array( presets_plugin_filename() ), $manually_skipped_plugins );
 
