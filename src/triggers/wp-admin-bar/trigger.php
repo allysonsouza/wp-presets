@@ -38,4 +38,9 @@ function presets_admin_bar_item( WP_Admin_Bar $admin_bar ) {
 
 }
 
-add_action( 'admin_bar_menu', 'presets_admin_bar_item', 100 );
+add_action(
+	'admin_init',
+	function () {
+		add_action( 'admin_bar_menu', 'presets_admin_bar_item', 100 );
+	}
+);
