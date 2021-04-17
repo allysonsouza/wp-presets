@@ -5,6 +5,7 @@ function presets_admin_bar_item( WP_Admin_Bar $admin_bar ) {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
+
 	$admin_bar->add_menu(
 		array(
 			'id'     => 'presets-trigger',
@@ -18,15 +19,7 @@ function presets_admin_bar_item( WP_Admin_Bar $admin_bar ) {
 		)
 	);
 
-	$presets_ids = get_posts(
-		array(
-			'fields'         => 'ids',
-			'posts_per_page' => -1,
-			'post_type'      => 'presets',
-		)
-	);
-
-	foreach ( $presets_ids as $id ) {
+	foreach ( presets_get_ids() as $id ) {
 
 		$admin_bar->add_menu(
 			array(
@@ -34,7 +27,7 @@ function presets_admin_bar_item( WP_Admin_Bar $admin_bar ) {
 				'parent' => 'presets-trigger',
 				'group'  => null,
 				'title'  => get_the_title( $id ), // you can use img tag with image link. it will show the image icon Instead of the title.
-				'href'   => admin_url( 'edit.php?post_type=presets&presets-trigger=' . $id ),
+				'href'   => presets_get_current_url( $id ),
 				'meta'   => array(
 					'title' => get_the_title( $id ), // This title will show on hover.
 				),
