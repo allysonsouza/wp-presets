@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:     Presets
- * Description:     The Presets plugin allows you to fill your WordPress with demo data in just a few seconds allowing you to test it without the need to manually change the settings every time.
+ * Description:     The Presets plugin allows you to fill your WordPress with specific predefined settings in just a few seconds.
  * Author:          Presets contributors
  * Author URI:      https://github.com/felipelousantos/wp-presets/graphs/contributors
  * Text Domain:     presets
- * Version:         0.1.0
+ * Version:         0.2.0
  *
  * @package Presets
  */
