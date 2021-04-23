@@ -26,3 +26,4 @@ require_once plugin_dir_path( __FILE__ ) . 'src/settings/helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/metabox/presets-options.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/triggers/triggers.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/actions/apply-presets.php';
+require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
