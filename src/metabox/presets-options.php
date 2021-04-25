@@ -2,11 +2,19 @@
 
 /**
  * Adding 'cmb2' vendor.
+ * https://github.com/CMB2/CMB2
  */
 if ( file_exists( dirname( __FILE__ ) . '/../../vendors/cmb2/init.php' ) ) {
 	require_once dirname( __FILE__ ) . '/../../vendors/cmb2/init.php';
 }
 
+/**
+ * Adding 'cmb2-tabs' vendor.
+ * https://github.com/rubengc/cmb2-tabs
+ */
+if ( file_exists( dirname( __FILE__ ) . '/../../vendors/cmb2-tabs/cmb2-tabs.php' ) ) {
+	require_once dirname( __FILE__ ) . '/../../vendors/cmb2-tabs/cmb2-tabs.php';
+}
 
 include_once plugin_dir_path( __FILE__ ) . 'core/user.php';
 include_once plugin_dir_path( __FILE__ ) . 'core/plugins.php';
