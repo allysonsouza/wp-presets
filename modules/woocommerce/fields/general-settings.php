@@ -1,6 +1,6 @@
 <?php
 
-function get_countries_states_list() {
+function presets_modules_woocommerce_get_countries_states_list() {
 
 	$wc_countries = new WC_Countries();
 
@@ -52,6 +52,14 @@ function presets_modules_woocommerce_general_settings_metabox() {
 
 	$cmb->add_field(
 		array(
+			'name' => __( 'Store Address', 'woocommerce' ),
+			'type' => 'title',
+			'id'   => $prefix_meta . 'title-1',
+		)
+	);
+
+	$cmb->add_field(
+		array(
 			'name' => __( 'Address line 1', 'woocommerce' ),
 			'id'   => $prefix_meta . 'woocommerce_store_address',
 			'type' => 'text',
@@ -81,7 +89,7 @@ function presets_modules_woocommerce_general_settings_metabox() {
 			'type'             => 'select',
 			'show_option_none' => ' ',
 			'default'          => 'custom',
-			'options'          => get_countries_states_list(),
+			'options'          => presets_modules_woocommerce_get_countries_states_list(),
 		)
 	);
 
@@ -92,6 +100,66 @@ function presets_modules_woocommerce_general_settings_metabox() {
 			'type' => 'text',
 		)
 	);
+
+	$cmb->add_field(
+		array(
+			'name' => __( 'Currency options', 'woocommerce' ),
+			'type' => 'title',
+			'id'   => $prefix_meta . 'title-2',
+		)
+	);
+
+	$cmb->add_field(
+		array(
+			'name'             => __( 'Currency', 'woocommerce' ),
+			'id'               => $prefix_meta . 'woocommerce_currency',
+			'type'             => 'select',
+			'show_option_none' => ' ',
+			'default'          => 'custom',
+			'options'          => get_woocommerce_currencies(),
+		)
+	);
+
+	$cmb->add_field(
+		array(
+			'name'             => __( 'Currency position', 'woocommerce' ),
+			'id'               => $prefix_meta . 'woocommerce_currency_pos',
+			'type'             => 'select',
+			'show_option_none' => ' ',
+			'default'          => 'custom',
+			'options'          => array(
+				'left'        => __( 'Left', 'woocommerce' ),
+				'right'       => __( 'Right', 'woocommerce' ),
+				'left_space'  => __( 'Left with space', 'woocommerce' ),
+				'right_space' => __( 'Right with space', 'woocommerce' ),
+			),
+		)
+	);
+
+	$cmb->add_field(
+		array(
+			'name' => __( 'Thousand separator', 'woocommerce' ),
+			'id'   => $prefix_meta . 'woocommerce_price_thousand_sep',
+			'type' => 'text_small',
+		)
+	);
+
+	$cmb->add_field(
+		array(
+			'name' => __( 'Decimal separator', 'woocommerce' ),
+			'id'   => $prefix_meta . 'woocommerce_price_decimal_sep',
+			'type' => 'text_small',
+		)
+	);
+
+	$cmb->add_field(
+		array(
+			'name' => __( 'Number of decimals', 'woocommerce' ),
+			'id'   => $prefix_meta . 'woocommerce_price_num_decimals',
+			'type' => 'text_small',
+		)
+	);
+
 }
 
 add_action( 'presets_create_metabox', 'presets_modules_woocommerce_general_settings_metabox' );

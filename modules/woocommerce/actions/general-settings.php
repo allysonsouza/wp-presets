@@ -10,6 +10,11 @@ function presets_modules_woocommerce_general_settings_actions() {
 		'woocommerce_store_city',
 		'woocommerce_default_country',
 		'woocommerce_store_postcode',
+		'woocommerce_currency',
+		'woocommerce_currency_pos',
+		'woocommerce_price_thousand_sep',
+		'woocommerce_price_decimal_sep',
+		'woocommerce_price_num_decimals',
 	);
 
 	foreach ( $fields as $field ) {
