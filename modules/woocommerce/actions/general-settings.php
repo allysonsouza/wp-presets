@@ -21,7 +21,7 @@ function presets_modules_woocommerce_general_settings_actions() {
 
 		$meta = get_presets_meta( $prefix, $field );
 
-		if ( ! empty( $meta ) ) {
+		if ( array_key_exists( 'presets_' . $prefix . $field, get_presets_meta() ) ) {
 
 			update_option( $field, $meta );
 

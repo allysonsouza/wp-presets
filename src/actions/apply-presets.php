@@ -3,9 +3,15 @@
 require_once plugin_dir_path( __FILE__ ) . 'core/user.php';
 require_once plugin_dir_path( __FILE__ ) . 'core/plugins.php';
 
-function get_presets_meta( $prefix, $field ) {
+function get_presets_meta( $prefix = null, $field = null ) {
 	$preset_id = filter_var( $_GET['presets-trigger'], FILTER_SANITIZE_NUMBER_INT );
-	return get_post_meta( $preset_id, 'presets_' . $prefix . $field, true );
+
+	if ( isset( $prefix ) ) {
+		return get_post_meta( $preset_id, 'presets_' . $prefix . $field, true );
+	} else {
+		return get_post_meta( $preset_id );
+	}
+
 }
 
 function apply_presets() {
