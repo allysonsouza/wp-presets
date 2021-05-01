@@ -72,7 +72,6 @@ function presets_admin_notice__success() {
 	?>
 		<div class="notice notice-success is-dismissible">
 			<p><?php _e( 'The settings were applied as expected! ' ); ?></p>
-			<?php var_dump( get_post_meta( $_GET['presets-applied'] ) ); ?>
 		</div>
 	<?php
 }

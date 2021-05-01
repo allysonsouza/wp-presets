@@ -8,6 +8,8 @@ function presets_core_general_settings_language_options() {
 
 	$options = array();
 
+	$options['en_US'] = 'Default - English (United States)';
+
 	foreach ( $translations as $translation_id => $translation_meta ) {
 
 		$options[ $translation_id ] = $translation_meta['english_name'];

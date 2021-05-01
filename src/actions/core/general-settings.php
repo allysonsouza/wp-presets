@@ -25,8 +25,15 @@ function presets_core_general_settings_apply_meta() {
 
 			}
 
-			update_option( $field, $meta );
+			if ( 'en_US' === $meta && 'WPLANG' === $field ) {
 
+				update_option( $field, '' );
+
+			} else {
+
+				update_option( $field, $meta );
+
+			}
 		}
 	}
 
