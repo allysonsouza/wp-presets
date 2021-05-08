@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Returns the full WooCommerce Country/State list.
+ * If no states, it only returns the country.
+ */
 function presets_modules_woocommerce_get_countries_states_list() {
 
 	$wc_countries = new WC_Countries();
@@ -45,8 +49,6 @@ function presets_modules_woocommerce_general_settings_metabox() {
 			'context'      => 'normal',
 			'priority'     => 'high',
 			'show_names'   => true, // Show field names on the left
-		// 'cmb_styles' => false, // false to disable the CMB stylesheet
-		// 'closed'     => true, // Keep the metabox closed by default
 		)
 	);
 
@@ -116,7 +118,7 @@ function presets_modules_woocommerce_general_settings_metabox() {
 			'type'             => 'select',
 			'show_option_none' => ' ',
 			'default'          => 'custom',
-			'options'          => get_woocommerce_currencies(),
+			'options'          => get_woocommerce_currencies(), // WooCommerce function that returns full list of currency symbols and names - https://woocommerce.github.io/code-reference/namespaces/default.html#function_get_woocommerce_currencies
 		)
 	);
 
