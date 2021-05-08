@@ -46,8 +46,6 @@ function presets_core_plugins_create_metabox() {
 			'context'      => 'normal',
 			'priority'     => 'low',
 			'show_names'   => true, // Show field names on the left
-		// 'cmb_styles' => false, // false to disable the CMB stylesheet
-		// 'closed'     => true, // Keep the metabox closed by default
 		)
 	);
 

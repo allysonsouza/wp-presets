@@ -2,11 +2,11 @@
 
 /**
  * Adding 'cmb2' vendor.
+ * https://github.com/CMB2/CMB2
  */
 if ( file_exists( dirname( __FILE__ ) . '/../../vendors/cmb2/init.php' ) ) {
 	require_once dirname( __FILE__ ) . '/../../vendors/cmb2/init.php';
 }
-
 
 include_once plugin_dir_path( __FILE__ ) . 'core/user.php';
 include_once plugin_dir_path( __FILE__ ) . 'core/general-settings.php';
