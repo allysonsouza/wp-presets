@@ -1,15 +1,14 @@
 <?php
 /**
  * Plugin Name:     Presets
- * Description:     The Presets plugin allows you to fill your WordPress with specific predefined settings in just a few seconds.
+ * Description:     Fill your WordPress installation with previously defined settings in just a few seconds.
  * Author:          Presets contributors
  * Author URI:      https://github.com/felipelousantos/wp-presets/graphs/contributors
  * Text Domain:     presets
- * Version:         0.2.0
+ * Version:         0.3.0
  *
  * @package Presets
  */
-
 
 /**
  * Function outputs the plugin directory with the root file name.

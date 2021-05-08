@@ -1,5 +1,12 @@
-The Presets plugin allows you to fill your WordPress with previously defined settings in just a few seconds allowing you to test it without the need to manually change the settings every time.
+The Presets plugin allows you to fill your WordPress installation with previously defined settings in just a few seconds, allowing you to test it without the need to change the settings every time manually.
 
-Currently, you are able to change WordPress user meta details and define plugins to be activated/deactivate when a preset is triggered, but the goal will be to bring more WordPress and WooCommerce settings. We hope to make it easy in the long term to extend and bring more plugins settings.
+This plugin hasn't been developed to be working on production sites, and it's mostly for testing plugins that require you to change the settings all the time.
 
-This plugin hasn't been developed to be working on production sites. The goal with it is mostly to allow you to test plugins that require you to change the settings all the time.
+You can see more on the WordPress.org plugin page: https://wordpress.org/plugins/presets/
+
+Feel free to contact us if you are looking to contrbute on the plugin and if you have questions about it: https://felipels.com/contact/
+
+Do you like it and want to donate? We don't take donations currently, but you can help one of these projects instead as these are really important when it comes to making a better WordPress community:
+
+* WordPress Foundation: https://wordpressfoundation.org/donate/
+* The Big Orange Heart Foundation: https://www.bigorangeheart.org/donate/
