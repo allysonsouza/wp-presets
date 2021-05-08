@@ -1,11 +1,18 @@
 <?php
 
 require_once plugin_dir_path( __FILE__ ) . 'core/user.php';
+require_once plugin_dir_path( __FILE__ ) . 'core/general-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'core/plugins.php';
 
-function get_presets_meta( $prefix, $field ) {
+function get_presets_meta( $prefix = null, $field = null ) {
 	$preset_id = filter_var( $_GET['presets-trigger'], FILTER_SANITIZE_NUMBER_INT );
-	return get_post_meta( $preset_id, 'presets_' . $prefix . $field, true );
+
+	if ( isset( $prefix ) ) {
+		return get_post_meta( $preset_id, 'presets_' . $prefix . $field, true );
+	} else {
+		return get_post_meta( $preset_id );
+	}
+
 }
 
 function apply_presets() {
@@ -25,6 +32,7 @@ function apply_presets() {
 	 *
 	 * @hooked presets_core_user_apply_meta
 	 * @hooked presets_core_plugins_apply_meta
+	 * @hooked presets_core_general_settings_apply_meta
 	 */
 	do_action( 'presets_apply_meta' );
 
@@ -63,7 +71,7 @@ function presets_admin_notice__success() {
 
 	?>
 		<div class="notice notice-success is-dismissible">
-			<p><?php _e( 'The settings were applied as expected! ', 'presets' ); ?></p>
+			<p><?php _e( 'The settings were applied as expected! ' ); ?></p>
 		</div>
 	<?php
 }
