@@ -45,6 +45,9 @@ You can see the repository here: https://github.com/felipelousantos/wp-presets
 
 == Changelog ==
 
+= 1.0.0 =
+Added notes feature.
+
 = 0.3.0 =
 Added some of the WordPress General Settings and WooCommerce main settings.
 
