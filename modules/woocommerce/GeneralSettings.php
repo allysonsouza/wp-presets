@@ -9,9 +9,16 @@ class GeneralSettings {
 		add_action( 'presets_apply_meta', array( $this, 'createAction' ) );
     }
 
-		public $slug = 'woocommerce-general-settings';
-		public $name = '[WooCommerce] General Settings';
-		public $description = 'General Settings for WooCommerce';
+	private function getInfo($value) {
+
+		$info = array();
+
+		$this->info['slug'] = 'woocommerce-general-settings';
+		$this->info['name'] = __( '[WooCommerce] General Settings', 'presets' );
+		$this->info['description'] = 'General Settings for WooCommerce';
+
+		return $this->info[$value];
+	}
 
 	private function getLocations() {
 
@@ -45,7 +52,7 @@ class GeneralSettings {
 
 	public function createFields() {
 
-		$prefix_meta = $this->slug;
+		$prefix_meta = 'presets_' . $this->getInfo('slug');
 
 		/**
 		 * Initiate the metabox
@@ -53,7 +60,7 @@ class GeneralSettings {
 		$cmb = new_cmb2_box(
 			array(
 				'id'           => $prefix_meta . 'metabox',
-				'title'        => $this->name,
+				'title'        => $this->getInfo('name'),
 				'object_types' => array( 'presets' ), // Post type
 				'context'      => 'normal',
 				'priority'     => 'high',
@@ -174,7 +181,7 @@ class GeneralSettings {
 
 	public function createAction() {
 
-		$prefix = $this->slug;
+		$prefix = $this->getInfo('slug');
 
 		$fields = array(
 			'woocommerce_store_address',
@@ -193,7 +200,7 @@ class GeneralSettings {
 
 			$meta = get_presets_meta( $prefix, $field );
 
-			if ( array_key_exists( $prefix . $field, get_presets_meta() ) ) {
+			if ( array_key_exists( 'presets_' . $prefix . $field, get_presets_meta() ) ) {
 
 				update_option( $field, $meta );
 
