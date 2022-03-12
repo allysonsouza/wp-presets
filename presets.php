@@ -25,7 +25,7 @@ require_once plugin_dir_path( __FILE__ ) . 'src/settings/helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/metabox/presets-options.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/triggers/triggers.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/actions/apply-presets.php';
-require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
+// require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
 
 /**
  * Enqueue the plugin scripts and styles on admin.
@@ -33,6 +33,6 @@ require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
 function presets_admin_scripts() {
 
 	wp_enqueue_style( 'presets_admin_css', plugin_dir_url( __FILE__ ) . 'assets/css/admin.css' );
-
+	wp_enqueue_script( 'presets_admin_js', plugin_dir_url( __FILE__ ) . 'assets/js/admin.js' );
 }
 add_action( 'admin_enqueue_scripts', 'presets_admin_scripts' );

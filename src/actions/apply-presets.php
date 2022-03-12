@@ -1,8 +1,6 @@
 <?php
 
-require_once plugin_dir_path( __FILE__ ) . 'core/user.php';
 require_once plugin_dir_path( __FILE__ ) . 'core/general-settings.php';
-require_once plugin_dir_path( __FILE__ ) . 'core/plugins.php';
 
 function get_presets_meta( $prefix = null, $field = null ) {
 	$preset_id = filter_var( $_GET['presets-trigger'], FILTER_SANITIZE_NUMBER_INT );
@@ -29,10 +27,6 @@ function apply_presets() {
 
 	/**
 	 * presets_apply_meta hook.
-	 *
-	 * @hooked presets_core_user_apply_meta
-	 * @hooked presets_core_plugins_apply_meta
-	 * @hooked presets_core_general_settings_apply_meta
 	 */
 	do_action( 'presets_apply_meta' );
 
