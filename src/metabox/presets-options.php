@@ -18,9 +18,9 @@ function presets_options() {
 	$prefix = 'presets_';
 	$prefix_meta = 'presets_core_general_settings_';
 
-	$cmb = new_cmb2_box(
+	$presets_actions = new_cmb2_box(
 		array(
-			'id'           => 'metabox_wiki_test_repeat_group',
+			'id'           => 'metabox_preset_actions_repeat_group',
 			'title'        => __( 'Generates reusable form entries', 'presets' ),
 			'object_types' => array( 'presets' ), // Post type
 			'context'      => 'normal',
@@ -28,8 +28,8 @@ function presets_options() {
 		)
 	);
 
-	$group_field_id = $cmb->add_field( array(
-		'id'          => 'wiki_test_repeat_group',
+	$presets_actions_group = $presets_actions->add_field( array(
+		'id'          => 'preset_actions_repeat_group',
 		'type'        => 'group',
 		'options'     => array(
 			'group_title'       => __( 'Entry {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
@@ -41,20 +41,7 @@ function presets_options() {
 		),
 	) );
 
-	$group_field_id = $cmb->add_field( array(
-		'id'          => 'wiki_test_repeat_group',
-		'type'        => 'group',
-		'options'     => array(
-			'group_title'       => __( 'Entry {#}', 'cmb2' ), // since version 1.1.4, {#} gets replaced by row number
-			'add_button'        => __( 'Add Another Entry', 'cmb2' ),
-			'remove_button'     => __( 'Remove Entry', 'cmb2' ),
-			'sortable'          => true,
-			// 'closed'         => true, // true to have the groups closed by default
-			// 'remove_confirm' => esc_html__( 'Are you sure you want to remove?', 'cmb2' ), // Performs confirmation before removing group.
-		),
-	) );
-
-	$cmb->add_group_field( $group_field_id,
+	$presets_actions->add_group_field( $presets_actions_group,
 		array(
 			'name'             => __( 'Action', 'presets' ),
 			'id'               => 'action_type',
@@ -69,8 +56,8 @@ function presets_options() {
 		)
 	);
 
-	$cmb->add_group_field( $group_field_id,
-		array(
+	$presets_actions->add_group_field( $presets_actions_group,
+			array(
 			'name' => __( 'Site Title', 'presets' ),
 			'id'   => $prefix_meta . 'blogname',
 			'type' => 'text',
@@ -78,8 +65,8 @@ function presets_options() {
 		)
 	);
 
-	$cmb->add_group_field( $group_field_id,
-		array(
+	$presets_actions->add_group_field( $presets_actions_group,
+			array(
 			'name' => __( 'Tagline', 'presets' ),
 			'id'   => $prefix_meta . 'blogdescription',
 			'type' => 'text',
@@ -87,8 +74,8 @@ function presets_options() {
 		)
 	);
 
-	$cmb->add_group_field( $group_field_id,
-		array(
+	$presets_actions->add_group_field( $presets_actions_group,
+			array(
 			'name' => __( 'Administration Email Address', 'presets' ),
 			'id'   => $prefix_meta . 'admin_email',
 			'type' => 'text_email',
@@ -96,8 +83,8 @@ function presets_options() {
 		)
 	);
 
-	$cmb->add_group_field( $group_field_id,
-		array(
+	$presets_actions->add_group_field( $presets_actions_group,
+			array(
 			'name'             => __( 'Anyone can register', 'presets' ),
 			'id'               => $prefix_meta . 'users_can_register',
 			'type'             => 'select',
@@ -111,8 +98,8 @@ function presets_options() {
 		)
 	);
 
-	$cmb->add_group_field( $group_field_id,
-		array(
+	$presets_actions->add_group_field( $presets_actions_group,
+			array(
 			'name'             => __( 'Site Language', 'presets' ),
 			'id'               => $prefix_meta . 'WPLANG',
 			'type'             => 'select',

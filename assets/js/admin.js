@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 	function checkSelectedElements(){
 
-		var elements = document.querySelectorAll("#wiki_test_repeat_group_repeat .cmb-repeatable-grouping");
+		var elements = document.querySelectorAll("#preset_actions_repeat_group_repeat .cmb-repeatable-grouping");
 
 		elements.forEach(
 			function(element) {
@@ -19,16 +19,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
 					}
 				)		
 
-				var fieldsSelected = element.querySelectorAll("." + selectedOption);
+				if (selectedOption != '') {
+					var fieldsSelected = element.querySelectorAll("." + selectedOption);
 
-				fieldsSelected.forEach(
-					function(field) {
+					fieldsSelected.forEach(
+						function(field) {
 
-						field.classList.remove("hide");
-						field.classList.add("display");
+							field.classList.remove("hide");
+							field.classList.add("display");
 
-					}
-				)
+						}
+					)
+				}
 			}
 		);
 	}
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 	document.addEventListener('change',function(e){
 
-		if (e.target.id.includes("wiki_test_repeat_group") ) {
+		if (e.target.id.includes("preset_actions_repeat_group") ) {
 			checkSelectedElements();
 		}
 	})
