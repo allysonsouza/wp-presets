@@ -22,10 +22,10 @@ require_once plugin_dir_path( __FILE__ ) . 'src/cpt/presets.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/taxonomy/presets-tags.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/settings/advanced-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/settings/helpers.php';
-require_once plugin_dir_path( __FILE__ ) . 'src/metabox/presets-options.php';
+require_once plugin_dir_path( __FILE__ ) . 'src/fields.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/triggers/triggers.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/actions/apply-presets.php';
-// require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
+require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
 
 /**
  * Enqueue the plugin scripts and styles on admin.
