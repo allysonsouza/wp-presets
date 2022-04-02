@@ -1,7 +1,5 @@
 <?php
 
-require_once plugin_dir_path( __FILE__ ) . 'core/general-settings.php';
-
 function get_presets_meta( $prefix = null, $field = null ) {
 	$preset_id = filter_var( $_GET['presets-trigger'], FILTER_SANITIZE_NUMBER_INT );
 

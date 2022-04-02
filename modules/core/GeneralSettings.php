@@ -1,6 +1,6 @@
 <?php
 
-class GeneralSettings {
+class CoreGeneralSettings {
 
 	public $slug;
 	public $name;
@@ -103,29 +103,38 @@ class GeneralSettings {
 
 	public function createAction() {
 
-		$prefix = $this->getInfo('slug');
+		$prefix = 'core_general_settings_';
 
 		$fields = array(
-			'woocommerce_store_address',
-			'woocommerce_store_address_2',
-			'woocommerce_store_city',
-			'woocommerce_default_country',
-			'woocommerce_store_postcode',
-			'woocommerce_currency',
-			'woocommerce_currency_pos',
-			'woocommerce_price_thousand_sep',
-			'woocommerce_price_decimal_sep',
-			'woocommerce_price_num_decimals',
+			'blogname',
+			'blogdescription',
+			'admin_email',
+			'users_can_register',
+			'WPLANG',
 		);
-
+	
 		foreach ( $fields as $field ) {
-
+	
 			$meta = get_presets_meta( $prefix, $field );
-
+	
 			if ( array_key_exists( 'presets_' . $prefix . $field, get_presets_meta() ) ) {
-
-				update_option( $field, $meta );
-
+	
+				// Download the lang pack first if the site language is not yet installed.
+				if ( 'WPLANG' === $field ) {
+	
+					wp_download_language_pack( $meta );
+	
+				}
+	
+				if ( 'en_US' === $meta && 'WPLANG' === $field ) {
+	
+					update_option( $field, '' );
+	
+				} else {
+	
+					update_option( $field, $meta );
+	
+				}
 			}
 		}
 	}
@@ -136,8 +145,8 @@ class GeneralSettings {
 	}
 }
 
-$obj = new GeneralSettings(
-	'core-general-settings_2',
-	__( '[Core] General Settings 2', 'presets' ),
+$obj = new CoreGeneralSettings(
+	'core-general-settings',
+	__( '[Core] General Settings', 'presets' ),
 	__( 'General settings for the site', 'presets' )
 );

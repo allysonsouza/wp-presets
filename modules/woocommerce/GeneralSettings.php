@@ -1,6 +1,6 @@
 <?php
 
-class GeneralSettings {
+class WooCommerceGeneralSettings {
 	/**
      * Constructor
      */
@@ -209,4 +209,4 @@ class GeneralSettings {
 	}
 }
 
-$obj = new GeneralSettings;
+$obj = new WooCommerceGeneralSettings;
