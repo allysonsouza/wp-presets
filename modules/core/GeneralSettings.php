@@ -28,10 +28,11 @@ class CoreGeneralSettings extends ActionBase {
 
 		$classes = $this->slug . ' hide';
 
-		$metabox->add_group_field( $group,
+		$metabox->add_group_field( 
+			$group,
 			array(
 			'name' => __( 'Site Title', 'presets' ),
-			'id'   => $this->slug . 'blogname',
+			'id'   => $this->slug . '_blogname',
 			'type' => 'text',
 			'classes' => $classes,
 			)
@@ -40,7 +41,7 @@ class CoreGeneralSettings extends ActionBase {
 		$metabox->add_group_field( $group,
 			array(
 				'name' => __( 'Tagline', 'presets' ),
-				'id'   => $this->slug . 'blogdescription',
+				'id'   => $this->slug . '_blogdescription',
 				'type' => 'text',
 				'classes' => $classes,
 			)
@@ -49,7 +50,7 @@ class CoreGeneralSettings extends ActionBase {
 		$metabox->add_group_field( $group,
 			array(
 			'name' => __( 'Administration Email Address', 'presets' ),
-			'id'   => $this->slug . 'admin_email',
+			'id'   => $this->slug . '_admin_email',
 			'type' => 'text_email',
 			'classes' => $classes,
 		)
@@ -58,7 +59,7 @@ class CoreGeneralSettings extends ActionBase {
 		$metabox->add_group_field( $group,
 			array(
 			'name'             => __( 'Anyone can register', 'presets' ),
-			'id'               => $this->slug . 'users_can_register',
+			'id'               => $this->slug . '_users_can_register',
 			'type'             => 'select',
 			'show_option_none' => ' ',
 			'default'          => 'custom',
@@ -73,7 +74,7 @@ class CoreGeneralSettings extends ActionBase {
 		$metabox->add_group_field( $group,
 			array(
 			'name'             => __( 'Site Language', 'presets' ),
-			'id'               => $this->slug . 'WPLANG',
+			'id'               => $this->slug . '_WPLANG',
 			'type'             => 'select',
 			'show_option_none' => ' ',
 			'default'          => 'custom',
@@ -84,39 +85,52 @@ class CoreGeneralSettings extends ActionBase {
 
 	}
 
-	public function applyAction() {
+	public function applyAction($id) {
 
-		$prefix = 'core_general_settings_';
+		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true );
 
-		$fields = array(
-			'blogname',
-			'blogdescription',
-			'admin_email',
-			'users_can_register',
-			'WPLANG',
-		);
-	
-		foreach ( $fields as $field ) {
-	
-			$meta = get_presets_meta( $prefix, $field );
-	
-			if ( array_key_exists( 'presets_' . $prefix . $field, get_presets_meta() ) ) {
-	
-				// Download the lang pack first if the site language is not yet installed.
-				if ( 'WPLANG' === $field ) {
-	
-					wp_download_language_pack( $meta );
-	
+		error_log(print_r($entries, true));
+
+		foreach ( (array) $entries as $key => $entry ) {
+			
+			if ( $entry['action_type'] != $this->slug ) {
+				return;
+			}
+
+			$prefix = $this->slug . "_";
+
+			$fields = array(
+				'blogname',
+				'blogdescription',
+				'admin_email',
+				'users_can_register',
+				'WPLANG',
+			);
+		
+			foreach ( $fields as $field ) {
+
+				if ( empty($entry[$prefix . $field])) {
+					continue;
 				}
-	
-				if ( 'en_US' === $meta && 'WPLANG' === $field ) {
-	
-					update_option( $field, '' );
-	
-				} else {
-	
-					update_option( $field, $meta );
-	
+			
+				if ( array_key_exists( $prefix . $field, $entry ) ) {
+		
+					// Download the lang pack first if the site language is not yet installed.
+					if ( 'WPLANG' === $field ) {
+		
+						wp_download_language_pack( $entry[$prefix . 'WPLANG'] );
+		
+					}
+		
+					if ( 'en_US' === $entry[$prefix . 'WPLANG'] && 'WPLANG' === $field ) {
+		
+						update_option( $field, '' );
+		
+					} else {
+		
+						update_option( $field, $entry[$prefix . $field] );
+		
+					}
 				}
 			}
 		}

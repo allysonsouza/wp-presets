@@ -1,16 +1,5 @@
 <?php
 
-function get_presets_meta( $prefix = null, $field = null ) {
-	$preset_id = filter_var( $_GET['presets-trigger'], FILTER_SANITIZE_NUMBER_INT );
-
-	if ( isset( $prefix ) ) {
-		return get_post_meta( $preset_id, 'presets_' . $prefix . $field, true );
-	} else {
-		return get_post_meta( $preset_id );
-	}
-
-}
-
 function apply_presets() {
 
 	if ( ! isset( $_GET['presets-trigger'] ) || ! current_user_can( 'manage_options' ) ) {
@@ -26,7 +15,7 @@ function apply_presets() {
 	/**
 	 * presets_apply_meta hook.
 	 */
-	do_action( 'presets_apply_meta' );
+	do_action( 'presets_apply_meta', $preset_id );
 
 }
 
