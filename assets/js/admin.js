@@ -37,11 +37,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 	checkSelectedElements();
 
-	document.addEventListener('change',function(e){
+	document.addEventListener('change',function(event){
 
-		if (e.target.id.includes("preset_actions_repeat_group") ) {
+		var element = event.target;
+		
+		if (element.id.includes("preset_actions_repeat_group") || element.dataset.selector.includes("preset_actions_repeat_group_repeat")) {
 			checkSelectedElements();
 		}
+		
 	})
 
+	document.addEventListener('click',function(event){
+
+		var element = event.target;
+		
+		if (element.id.includes("preset_actions_repeat_group") || element.dataset.selector.includes("preset_actions_repeat_group_repeat")) {
+			checkSelectedElements();
+		}
+
+	})
 })
