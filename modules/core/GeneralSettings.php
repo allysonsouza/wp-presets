@@ -85,18 +85,8 @@ class CoreGeneralSettings extends ActionBase {
 
 	}
 
-	public function applyAction($id) {
-
-		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true );
-
-		error_log(print_r($entries, true));
-
-		foreach ( (array) $entries as $key => $entry ) {
+	public function applyAction() {
 			
-			if ( $entry['action_type'] != $this->slug ) {
-				return;
-			}
-
 			$prefix = $this->slug . "_";
 
 			$fields = array(
@@ -133,12 +123,6 @@ class CoreGeneralSettings extends ActionBase {
 					}
 				}
 			}
-		}
+		
 	}
 }
-
-$obj = new CoreGeneralSettings(
-	'core-general-settings',
-	__( '[Core] General Settings ABC', 'presets' ),
-	__( 'General settings for the site', 'presets' )
-);
