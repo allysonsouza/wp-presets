@@ -11,7 +11,7 @@ abstract class ActionBase {
      */
     public function __construct($slug, $name, $description) {
         add_action( 'presets_create_metabox', array( $this, 'createFields' ), 10, 2 );
-		add_action( 'presets_apply_meta', array( $this, 'applyAction' ) );
+		add_action( 'presets_apply_meta', array( $this, 'applyAction' ), 10, 1 );
 		add_filter( 'presets_action_select', array( $this, 'createSelectOption' ), 10, 1 );
 
 		$this->slug = $slug;
@@ -21,11 +21,10 @@ abstract class ActionBase {
 
 	abstract public function createFields($metabox, $group);
 
-	abstract public function applyAction();
+	abstract public function applyAction($id);
 
 	public function createSelectOption($actions) {
 		$actions[$this->slug] = $this->name;
 		return $actions;
 	}
-	
 }

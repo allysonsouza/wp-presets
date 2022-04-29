@@ -23,21 +23,11 @@ require_once plugin_dir_path( __FILE__ ) . 'src/taxonomy/presets-tags.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/settings/advanced-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/settings/helpers.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/actions/fields.php';
-require_once plugin_dir_path( __FILE__ ) . 'src/actions/ActionBase.php';
-//require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
-require_once plugin_dir_path( __FILE__ ) . 'modules/core/GeneralSettings.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/actions/implementation.php';
+require_once plugin_dir_path( __FILE__ ) . 'src/actions/ActionBase.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/notes/Notes.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/triggers/triggers.php';
-
-
-$core_general_settings = new CoreGeneralSettings(
-	'core-general-settings',
-	__( '[Core] General Settings ABC', 'presets' ),
-	__( 'General settings for the site', 'presets' )
-);
-
-$notes = new Notes();
+require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
 
 /**
  * Enqueue the plugin scripts and styles on admin.
