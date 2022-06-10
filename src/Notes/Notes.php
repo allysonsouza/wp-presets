@@ -1,5 +1,6 @@
 <?php
 
+namespace Presets\Notes;
 class Notes {
 
 	/**
@@ -48,5 +49,3 @@ class Notes {
 	
 	}
 }
-
-$obj = new Notes();

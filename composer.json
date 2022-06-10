@@ -1,0 +1,11 @@
+{
+    "name": "felipelousantos/wp-presets",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "require": {},
+	"autoload": {
+        "psr-4": {
+            "Presets\\": "src/"
+        }
+    }
+}
