@@ -1,14 +1,6 @@
 <?php
 
 /**
- * Adding 'cmb2' vendor.
- * https://github.com/CMB2/CMB2
- */
-if ( file_exists( dirname( __FILE__ ) . '/../../vendors/cmb2/init.php' ) ) {
-	require_once dirname( __FILE__ ) . '/../../vendors/cmb2/init.php';
-}
-
-/**
  * Create metabox.
  */
 function presets_options() {

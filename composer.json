@@ -2,10 +2,13 @@
     "name": "felipelousantos/wp-presets",
     "type": "wordpress-plugin",
     "license": "GPLv2",
-    "require": {},
+    "require": {
+        "cmb2/cmb2": "dev-master"
+    },
 	"autoload": {
         "psr-4": {
             "Presets\\": "src/"
-        }
+        },
+        "files": ["vendor/cmb2/cmb2/init.php"]
     }
 }
