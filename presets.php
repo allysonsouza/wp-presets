@@ -13,6 +13,8 @@
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
 use Presets\Notes;
+use Presets\Taxonomy;
+use Presets\PostTypes;
 
 /**
  * Function outputs the plugin directory with the root file name.
@@ -21,10 +23,6 @@ use Presets\Notes;
 function presets_plugin_filename() {
 	return str_replace( plugin_dir_path( __DIR__ ), '', $dir = plugin_dir_path( __FILE__ ) ) . 'presets.php';
 }
-
-// Content
-require_once plugin_dir_path( __FILE__ ) . 'src/cpt/presets.php';
-require_once plugin_dir_path( __FILE__ ) . 'src/taxonomy/presets-tags.php';
 
 // Settings
 require_once plugin_dir_path( __FILE__ ) . 'src/settings/advanced-settings.php';
@@ -41,6 +39,8 @@ require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
 
 // Object creation
 new Notes\Notes();
+new Taxonomy\Tags();
+new PostTypes\Presets();
 
 /**
  * Enqueue the plugin scripts and styles on admin.

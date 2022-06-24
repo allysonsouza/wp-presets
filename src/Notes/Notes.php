@@ -1,6 +1,7 @@
 <?php
 
 namespace Presets\Notes;
+
 class Notes {
 
 	/**
