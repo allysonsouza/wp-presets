@@ -16,6 +16,7 @@ use Presets\Notes;
 use Presets\Taxonomy;
 use Presets\PostTypes;
 use Presets\Actions;
+use Presets\Triggers;
 
 /**
  * Function outputs the plugin directory with the root file name.
@@ -32,8 +33,7 @@ require_once plugin_dir_path( __FILE__ ) . 'src/settings/helpers.php';
 // Actions
 require_once plugin_dir_path( __FILE__ ) . 'src/actions/ActionBase.php';
 
-// Triggers and Modules
-require_once plugin_dir_path( __FILE__ ) . 'src/triggers/triggers.php';
+// Modules
 require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
 
 // Object creation
@@ -42,6 +42,8 @@ new Taxonomy\Tags();
 new PostTypes\Presets();
 new Actions\Fields();
 new Actions\Implementation();
+$admin_bar = new WP_Admin_Bar;
+new Triggers\WPAdminBar($admin_bar);
 
 /**
  * Enqueue the plugin scripts and styles on admin.
