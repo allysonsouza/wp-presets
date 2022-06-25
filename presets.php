@@ -15,6 +15,7 @@ require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 use Presets\Notes;
 use Presets\Taxonomy;
 use Presets\PostTypes;
+use Presets\Actions;
 
 /**
  * Function outputs the plugin directory with the root file name.
@@ -29,8 +30,6 @@ require_once plugin_dir_path( __FILE__ ) . 'src/settings/advanced-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/settings/helpers.php';
 
 // Actions
-require_once plugin_dir_path( __FILE__ ) . 'src/actions/fields.php';
-require_once plugin_dir_path( __FILE__ ) . 'src/actions/implementation.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/actions/ActionBase.php';
 
 // Triggers and Modules
@@ -41,6 +40,8 @@ require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
 new Notes\Notes();
 new Taxonomy\Tags();
 new PostTypes\Presets();
+new Actions\Fields();
+new Actions\Implementation();
 
 /**
  * Enqueue the plugin scripts and styles on admin.

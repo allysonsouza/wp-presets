@@ -1,61 +1,73 @@
 <?php
 
-function apply_presets() {
+namespace Presets\Actions;
 
-	if ( ! isset( $_GET['presets-trigger'] ) || ! current_user_can( 'manage_options' ) ) {
-		return;
-	}
+class Implementation {
 
-	$preset_id = filter_var( $_GET['presets-trigger'], FILTER_SANITIZE_NUMBER_INT );
-
-	if ( get_post_type( $preset_id ) !== 'presets' ) {
-		return;
+	/**
+     * Constructor
+     */
+    public function __construct() {
+		add_action( 'admin_init', array( $this, 'applyActions' ), 10 );
+		add_action( 'admin_init', array( $this, 'redirectSuccess' ), 20 );
+		add_action( 'admin_notices', array( $this, 'successAdminNotice' ) );
 	}
 
 	/**
-	 * presets_apply_meta hook.
+	 * Apply actions.
 	 */
-	do_action( 'presets_apply_meta', $preset_id );
+	public function applyActions() {
 
-}
-
-add_action( 'admin_init', 'apply_presets', 10 );
-
-/**
- * Redirect after presets have been applied.
- */
-function presets_apply_redirection() {
-
-	if ( ! isset( $_GET['presets-trigger'] ) || ! current_user_can( 'manage_options' ) ) {
-		return;
+		if ( ! isset( $_GET['presets-trigger'] ) || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+	
+		$preset_id = filter_var( $_GET['presets-trigger'], FILTER_SANITIZE_NUMBER_INT );
+	
+		if ( get_post_type( $preset_id ) !== 'presets' ) {
+			return;
+		}
+	
+		/**
+		 * presets_apply_meta hook.
+		 */
+		do_action( 'presets_apply_meta', $preset_id );
+	
 	}
 
-	$preset_id = filter_var( $_GET['presets-trigger'], FILTER_SANITIZE_NUMBER_INT );
+	/**
+	 * Redirect after presets have been applied.
+	 */
+	public function redirectSuccess() {
 
-	$redirect_url = add_query_arg( 'presets-applied', $preset_id, remove_query_arg( 'presets-trigger', $_SERVER['REQUEST_URI'] ) );
+		if ( ! isset( $_GET['presets-trigger'] ) || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
 
-	wp_safe_redirect( $redirect_url );
-	exit;
+		$preset_id = filter_var( $_GET['presets-trigger'], FILTER_SANITIZE_NUMBER_INT );
 
-}
+		$redirect_url = add_query_arg( 'presets-applied', $preset_id, remove_query_arg( 'presets-trigger', $_SERVER['REQUEST_URI'] ) );
 
-add_action( 'admin_init', 'presets_apply_redirection', 20 );
+		wp_safe_redirect( $redirect_url );
+		exit;
 
-/**
- * Display notice after action confirmation.
- */
-function presets_admin_notice__success() {
-
-	if ( ! isset( $_GET['presets-applied'] ) || ! current_user_can( 'manage_options' ) ) {
-		return;
 	}
 
-	?>
-		<div class="notice notice-success is-dismissible">
-		<p><?php _e( 'The settings were applied as expected! ' ); ?></p>
-		<?php do_action( 'presets_admin_notice_sucess' ); ?>
-		</div>
-	<?php
-}
+	/**
+	 * Display notice after action confirmation.
+	 */
+	public function successAdminNotice() {
 
-add_action( 'admin_notices', 'presets_admin_notice__success' );
+		if ( ! isset( $_GET['presets-applied'] ) || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		?>
+			<div class="notice notice-success is-dismissible">
+			<p><?php _e( 'The settings were applied as expected!' ); ?></p>
+			<?php do_action( 'presets_admin_notice_sucess' ); ?>
+			</div>
+		<?php
+	}
+
+}
