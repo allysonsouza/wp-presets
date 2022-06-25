@@ -1,37 +1,24 @@
 <?php
 
 
-// WIP: We still need to add the object of the native WP "WP_Admin_Bar" class inside the WPAdminBar class somehow.
-
 namespace Presets\Triggers;
 
 class WPAdminBar {
 
-	public $admin_bar;
-
 	/**
      * Constructor
      */
-    public function __construct($admin_bar) {
-
-		add_action(
-			'admin_init',
-			function () {
-				add_action( 'admin_bar_menu', array( $this, 'addAdminBarMenu' ), 100 );
-			}
-		);
-
-		$this->admin_bar = $admin_bar;
-		
+    public function __construct() {
+		add_action( 'admin_bar_menu', array( $this, 'addAdminBarMenu' ), 100 );		
 	}
 
-	public function addAdminBarMenu( ) {
+	public function addAdminBarMenu(\WP_Admin_Bar $wp_admin_bar) {
 	
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 	
-		$this->admin_bar->add_menu(
+		$wp_admin_bar->add_menu(
 			array(
 				'id'     => 'presets-trigger',
 				'parent' => null,
@@ -46,7 +33,7 @@ class WPAdminBar {
 	
 		foreach ( $this->getAllPresets() as $id ) {
 	
-			$this->admin_bar->add_menu(
+			$wp_admin_bar->add_menu(
 				array(
 					'id'     => 'presets-trigger_' . $id,
 					'parent' => 'presets-trigger',
@@ -58,7 +45,7 @@ class WPAdminBar {
 					),
 				)
 			);
-	
+		
 		}
 	
 	}
@@ -80,7 +67,5 @@ class WPAdminBar {
 		return add_query_arg( 'presets-trigger', $id, $_SERVER['REQUEST_URI'] );
 	
 	}
-	
-
 
 }

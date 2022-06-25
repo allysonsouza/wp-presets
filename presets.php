@@ -42,8 +42,7 @@ new Taxonomy\Tags();
 new PostTypes\Presets();
 new Actions\Fields();
 new Actions\Implementation();
-$admin_bar = new WP_Admin_Bar;
-new Triggers\WPAdminBar($admin_bar);
+new Triggers\WPAdminBar();
 
 /**
  * Enqueue the plugin scripts and styles on admin.
