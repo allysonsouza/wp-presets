@@ -93,6 +93,9 @@ class CoreGeneralSettings extends ActionBase {
 
 		foreach ( (array) $entries as $key => $entry ) {
 			
+			if ( empty( $entry['action_type'] ) ) {
+				return;
+			}
 			if ( $entry['action_type'] != $this->slug ) {
 				return;
 			}
@@ -114,20 +117,23 @@ class CoreGeneralSettings extends ActionBase {
 				}
 			
 				if ( array_key_exists( $prefix . $field, $entry ) ) {
-		
+			
 					// Download the lang pack first if the site language is not yet installed.
 					if ( 'WPLANG' === $field ) {
 		
-						wp_download_language_pack( $entry[$prefix . 'WPLANG'] );
+						if ( 'en_US' === $entry[$prefix . 'WPLANG'] ) {
 		
-					}
-		
-					if ( 'en_US' === $entry[$prefix . 'WPLANG'] && 'WPLANG' === $field ) {
-		
-						update_option( $field, '' );
-		
+							update_option( $field, '' );
+
+						} else {
+				
+							wp_download_language_pack( $entry[$prefix . 'WPLANG'] );
+							update_option( $field, $entry[$prefix . 'WPLANG'] );
+
+						}
+					
 					} else {
-		
+
 						update_option( $field, $entry[$prefix . $field] );
 		
 					}
