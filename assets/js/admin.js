@@ -6,10 +6,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 		elements.forEach(
 			function(element) {
-				selectedOption = element.querySelector(".preset-action-options select").value;
+
+				select = element.querySelector(".preset-action-options select");
+			
+				if (select.value != "") {
+
+					let selectedOption2 = select.querySelector('option[value="' + select.value + '"]').innerHTML;
+
+					title = element.querySelector(".cmb-group-title span");
+
+					title.innerHTML = selectedOption2;
+
+				}
+
+				let selectedOption = element.querySelector(".preset-action-options select").value;
 
 				var allFields = element.querySelectorAll(".display");
-				
+
 				allFields.forEach(
 					function(field) {
 
