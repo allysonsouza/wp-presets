@@ -1,0 +1,13 @@
+{
+    "name": "felipelousantos/wp-presets",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "require": {
+        "squizlabs/php_codesniffer": "*"
+    },
+	"autoload": {
+        "psr-4": {
+            "Presets\\": "src/"
+        }
+    }
+}
