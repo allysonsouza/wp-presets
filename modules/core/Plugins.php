@@ -19,9 +19,9 @@ class CorePlugins extends ActionBase {
 	
 		foreach ( $plugins as $plugin => $meta ) {
 	
-		//	if ( presets_plugin_filename() !== $plugin && ! in_array( $plugin, presets_get_option_skipped_plugins(), true ) ) {
+			if ( presets_plugin_filename() !== $plugin ) {
 				$avaliable_plugins[ $plugin ] = $meta['Name'];
-	//		}
+			}
 		}
 	
 		return $avaliable_plugins;
