@@ -10,7 +10,11 @@ class Module {
 
 	public function presets_module_woocommerce_activate() {
 		if ( class_exists( '\woocommerce' ) ) {
-			new GeneralSettings;
+			new GeneralSettings(
+				'woocommerce-general-settings',
+				__( '[WooCommerce] General Settings', 'presets' ),
+				__( 'General settings for WooCommerce', 'presets' )
+			);
 		}
 	}
 }

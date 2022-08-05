@@ -5,25 +5,12 @@ namespace Presets\Modules\WooCommerce;
 use Presets\Actions\ActionBase;
 
 class GeneralSettings extends ActionBase {
+
 	/**
-     * Constructor
-     */
-    public function __construct() {
-        add_action( 'presets_create_metabox', array( $this, 'createFields' ) );	
-		add_action( 'presets_apply_meta', array( $this, 'createAction' ) );
-    }
-
-	private function getInfo($value) {
-
-		$info = array();
-
-		$this->info['slug'] = 'woocommerce-general-settings';
-		$this->info['name'] = __( '[WooCommerce] General Settings', 'presets' );
-		$this->info['description'] = 'General Settings for WooCommerce';
-
-		return $this->info[$value];
-	}
-
+	 * Get all the avaliable locations for WooCommerce and return a formated array.
+	 * 
+	 * @return array $countries_states_list Array of locations with the location slug as the key and the location name as the value.
+	 */
 	private function getLocations() {
 
 		$wc_countries = new WC_Countries();
@@ -54,33 +41,39 @@ class GeneralSettings extends ActionBase {
 	
 	}
 
-	public function createFields() {
+	/**
+	 * Create fields for selecting the language to activate.
+	 * 
+	 * @param  object $metabox The CMB2 metabox object.
+	 * @param  string $group    The slug of the repeater group that has all the fields.
+	 * 
+	 * @return void
+	 */
+	public function createFields($metabox, $group) {
 
-		$prefix_meta = 'presets_' . $this->getInfo('slug');
+		$classes = $this->slug . ' hide';
 
-		/**
-		 * Initiate the metabox
-		 */
-		$cmb = new_cmb2_box(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'id'           => $prefix_meta . 'metabox',
-				'title'        => $this->getInfo('name'),
-				'object_types' => array( 'presets' ), // Post type
-				'context'      => 'normal',
-				'priority'     => 'high',
-				'show_names'   => true, // Show field names on the left
+			'name' => __( 'Store Address', 'woocommerce' ),
+			'type' => 'title',
+			'id'   => $this->slug . '_title-1',
+			'classes' => $classes,
 			)
 		);
 
-		$cmb->add_field(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name' => __( 'Store Address', 'woocommerce' ),
-				'type' => 'title',
-				'id'   => $prefix_meta . 'title-1',
+			'name' => __( 'Address line 1', 'woocommerce' ),
+			'id'   => $this->slug . '_woocommerce_store_address',
+			'type' => 'text',
+			'classes' => $classes,
 			)
 		);
 
-		$cmb->add_field(
+		/* $cmb->add_field(
 			array(
 				'name' => __( 'Address line 1', 'woocommerce' ),
 				'id'   => $prefix_meta . 'woocommerce_store_address',
@@ -180,34 +173,54 @@ class GeneralSettings extends ActionBase {
 				'id'   => $prefix_meta . 'woocommerce_price_num_decimals',
 				'type' => 'text_small',
 			)
-		);
+		); */
 	}
 
-	public function createAction() {
 
-		$prefix = $this->getInfo('slug');
+	/**
+	 * Activate/Deactivate plugins.
+	 * 
+	 * @param  int $id The preset post ID.
+	 * 
+	 * @return void
+	 */
+	public function applyAction($id) {
 
-		$fields = array(
-			'woocommerce_store_address',
-			'woocommerce_store_address_2',
-			'woocommerce_store_city',
-			'woocommerce_default_country',
-			'woocommerce_store_postcode',
-			'woocommerce_currency',
-			'woocommerce_currency_pos',
-			'woocommerce_price_thousand_sep',
-			'woocommerce_price_decimal_sep',
-			'woocommerce_price_num_decimals',
-		);
+		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true );
 
-		foreach ( $fields as $field ) {
+		foreach ( (array) $entries as $key => $entry ) {
+			
+			if ( empty( $entry['action_type'] ) ) {
+				return;
+			}
+			if ( $entry['action_type'] != $this->slug ) {
+				return;
+			}
 
-			$meta = get_presets_meta( $prefix, $field );
+			$prefix = $this->slug . "_";
+	
+			$fields = array(
+				'woocommerce_store_address',
+		/* 		'woocommerce_store_address_2',
+				'woocommerce_store_city',
+				'woocommerce_default_country',
+				'woocommerce_store_postcode',
+				'woocommerce_currency',
+				'woocommerce_currency_pos',
+				'woocommerce_price_thousand_sep',
+				'woocommerce_price_decimal_sep',
+				'woocommerce_price_num_decimals', */
+			);
 
-			if ( array_key_exists( 'presets_' . $prefix . $field, get_presets_meta() ) ) {
+			foreach ( $fields as $field ) {
 
-				update_option( $field, $meta );
+				if ( empty($entry[$prefix . $field])) {
+					continue;
+				}
 
+				if ( array_key_exists( $prefix . $field, $entry ) ) {
+					update_option( $field, $entry[$prefix . $field] );
+				}
 			}
 		}
 	}

@@ -12,7 +12,7 @@ class Module {
 
 		new GeneralSettings(
 			'core-general-settings',
-			__( '[Core] General Settings ABC', 'presets' ),
+			__( '[Core] General Settings', 'presets' ),
 			__( 'General settings for the site', 'presets' )
 		);
 

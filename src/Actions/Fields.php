@@ -48,9 +48,7 @@ class Fields {
 				'default'          => 'custom',
 				'options'          => apply_filters( 
 					'presets_action_select', 
-					array(
-						'abc' => __( 'Abc', 'presets' ),
-					)
+					array()
 				),
 				'classes' => 'preset-action-options',
 			)

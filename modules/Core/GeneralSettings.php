@@ -103,18 +103,15 @@ class GeneralSettings extends ActionBase {
 	}
 
 	/**
-	 * Save the fields.
+	 * Save fields.
 	 * 
-	 * @param  object $metabox The CMB2 metabox object.
-	 * @param  string $group    The slug of the repeater group with all the fields.
+	 * @param  int $id The preset post ID.
 	 * 
 	 * @return void
 	 */
 	public function applyAction($id) {
 
 		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true );
-
-		error_log(print_r($entries, true));
 
 		foreach ( (array) $entries as $key => $entry ) {
 			
