@@ -1,5 +1,7 @@
 <?php
 
+use Presets\Actions\ActionBase;
+
 class CorePlugins extends ActionBase {
 
 	/**

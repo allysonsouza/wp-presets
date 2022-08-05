@@ -20,7 +20,6 @@ use Presets\Triggers;
 
 /**
  * Function outputs the plugin directory with the root file name.
- *
  */
 function presets_plugin_filename() {
 	return str_replace( plugin_dir_path( __DIR__ ), '', $dir = plugin_dir_path( __FILE__ ) ) . 'presets.php';
@@ -30,13 +29,10 @@ function presets_plugin_filename() {
 require_once plugin_dir_path( __FILE__ ) . 'src/settings/advanced-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/settings/helpers.php';
 
-// Actions
-require_once plugin_dir_path( __FILE__ ) . 'src/actions/ActionBase.php';
-
 // Modules
 require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
 
-// Object creation
+// Objects creation
 new Notes\Notes();
 new Taxonomy\Tags();
 new PostTypes\Presets();

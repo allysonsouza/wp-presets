@@ -1,5 +1,7 @@
 <?php
 
+namespace Presets\Actions;
+
 abstract class ActionBase {
 
 	public $slug;
