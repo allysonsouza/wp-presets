@@ -2,6 +2,11 @@
 
 class CorePlugins extends ActionBase {
 
+	/**
+	 * Get all the installed plugins and return a formated array.
+	 * 
+	 * @return array $avaliable_plugins Array of plugins with the plugin slug as the key and the plugin name as the value.
+	 */
 	private function getAvaliablePlugins() {
 
 		if ( ! function_exists( 'get_plugins' ) ) {
@@ -23,20 +28,24 @@ class CorePlugins extends ActionBase {
 	
 	}
 
+	/**
+	 * Create fields for selecting the plugins to activate/deactivate.
+	 * 
+	 * @param  object $metabox The CMB2 metabox object.
+	 * @param  string $group    The slug of the repeater group with all the fields.
+	 * 
+	 * @return void
+	 */
 	public function createFields($metabox, $group) {
 
 		$classes = $this->slug . ' hide';
-
-		/**
-		 * Initiate the metabox
-		 */
 
 		$metabox->add_group_field( 
 			$group,
 			array(
 				'name'    => __( 'Deactivate Plugins', 'presets' ),
 				'desc'    => __( 'Select the plugins that should get deactivated when this preset gets triggered.', 'presets' ),
-				'id'      => $this->slug . 'deactivate',
+				'id'      => $this->slug . '_deactivate',
 				'type'    => 'multicheck',
 				'options' => $this->getAvaliablePlugins(),
 				'classes' => $classes,
@@ -48,7 +57,7 @@ class CorePlugins extends ActionBase {
 			array(
 				'name'    => __( 'Activate Plugins', 'presets' ),
 				'desc'    => __( 'Select the plugins that should get activated when this preset gets triggered.', 'presets' ),
-				'id'      => $this->slug . 'activate',
+				'id'      => $this->slug . '_activate',
 				'type'    => 'multicheck',
 				'options' => $this->getAvaliablePlugins(),
 				'classes' => $classes,
@@ -57,55 +66,59 @@ class CorePlugins extends ActionBase {
 
 	}
 
+	/**
+	 * Deactivate the selected plugins.
+	 */
+	function deactivatePlugins() {
+
+		// The Presets plugin, the plugins that were skipped on the plugins settings, and the plugins that were selected to be activated should be skipped on the filter as default.
+		// $skip_deactivate_plugins = array_merge( array( presets_plugin_filename() ), presets_selected_plugins(), presets_get_option_skipped_plugins() );
+
+		// Deactivate only the ones that are currenly activated.
+		$deactivate_plugins = array_diff( get_option( 'active_plugins' ), $skip_deactivate_plugins );
+
+		deactivate_plugins( $deactivate_plugins );
+
+	}
+
+	/**
+	 * Activate/Deactivate plugins.
+	 * 
+	 * @param  int $id The preset post ID.
+	 */
 	public function applyAction($id) {
 
-		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true );
+		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true ); // Get all the entries values for this post ID.
 
-		foreach ( (array) $entries as $key => $entry ) {
+		foreach ( (array) $entries as $entry ) {
 			
-			if ( empty( $entry['action_type'] ) ) {
-				return;
-			}
-			if ( $entry['action_type'] != $this->slug ) {
+			if ( empty( $entry['action_type'] ) || $entry['action_type'] != $this->slug ) {
 				return;
 			}
 
 			$prefix = $this->slug . "_";
 
+			// Action fields slugs.
 			$fields = array(
-				'blogname',
-				'blogdescription',
-				'admin_email',
-				'users_can_register',
-				'WPLANG',
+				'activate',
+				'deactivate',
 			);
 		
+			// Loop through all the fields and activate/deactivate the plugins.
 			foreach ( $fields as $field ) {
 
-				if ( empty($entry[$prefix . $field])) {
+				if (empty($entry[$prefix . $field])) {
 					continue;
 				}
 			
 				if ( array_key_exists( $prefix . $field, $entry ) ) {
-			
-					// Download the lang pack first if the site language is not yet installed.
-					if ( 'WPLANG' === $field ) {
-		
-						if ( 'en_US' === $entry[$prefix . 'WPLANG'] ) {
-		
-							update_option( $field, '' );
 
-						} else {
-				
-							wp_download_language_pack( $entry[$prefix . 'WPLANG'] );
-							update_option( $field, $entry[$prefix . 'WPLANG'] );
-
-						}
-					
-					} else {
-
-						update_option( $field, $entry[$prefix . $field] );
-		
+					if ( 'activate' === $field ) {
+						activate_plugins( $entry[$prefix . $field] );
+					}
+						
+					if ( 'deactivate' === $field ) {
+						deactivate_plugins( $entry[$prefix . $field] );
 					}
 				}
 			}
