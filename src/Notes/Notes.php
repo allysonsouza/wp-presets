@@ -8,11 +8,16 @@ class Notes {
      * Constructor
      */
     public function __construct() {
-        add_action( 'presets_create_metabox', array( $this, 'createNotesFields' ) );
+        add_action( 'presets_create_metabox', array( $this, 'createNotesMetaBox' ) );
 		add_action( 'presets_admin_notice_sucess', array( $this, 'displayNotes' ) );
     }
 
-	public function createNotesFields() {
+	/**
+	 * Create notes meta box
+	 * 
+	 * @return void
+	 */
+	public function createNotesMetaBox() {
 
 		$prefix_meta = 'presets_modules_notes_general_settings_';
 
@@ -37,9 +42,16 @@ class Notes {
 				'type' => 'wysiwyg',
 			)
 		);
-
 	}
 
+	/**
+	 * Display note when preset is applied.
+	 * 
+	 * Check if the preset is applied trough the $_GET parameter, and then display the according
+	 * notice.
+	 * 
+	 * @return void
+	 */
 	public function displayNotes() {
 
 		$prefix = 'modules_notes_general_settings_';

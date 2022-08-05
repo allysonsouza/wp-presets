@@ -9,7 +9,7 @@ class GeneralSettings extends ActionBase {
 	/**
 	 * Get all the language options avaliable on WordPress and return a formated array.
 	 * 
-	 * @return array $options Array of language with the language slug as the key and the language name as the value.
+	 * @return array $options  Array of language with the language slug as the key and the language name as the value.
 	 */
 	private function languageOptions() {
 
@@ -48,56 +48,56 @@ class GeneralSettings extends ActionBase {
 		$metabox->add_group_field( 
 			$group,
 			array(
-			'name' => __( 'Site Title', 'presets' ),
-			'id'   => $this->slug . '_blogname',
-			'type' => 'text',
-			'classes' => $classes,
-			)
-		);
-
-		$metabox->add_group_field( $group,
-			array(
-				'name' => __( 'Tagline', 'presets' ),
-				'id'   => $this->slug . '_blogdescription',
-				'type' => 'text',
+				'name'    => __( 'Site Title', 'presets' ),
+				'id'      => $this->slug . '_blogname',
+				'type'    => 'text',
 				'classes' => $classes,
 			)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
-			'name' => __( 'Administration Email Address', 'presets' ),
-			'id'   => $this->slug . '_admin_email',
-			'type' => 'text_email',
+				'name'    => __( 'Tagline', 'presets' ),
+				'id'      => $this->slug . '_blogdescription',
+				'type'    => 'text',
+				'classes' => $classes,
+			)
+		);
+
+		$metabox->add_group_field( $group,
+			array(
+			'name'    => __( 'Administration Email Address', 'presets' ),
+			'id'      => $this->slug . '_admin_email',
+			'type'    => 'text_email',
 			'classes' => $classes,
 		)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
-			'name'             => __( 'Anyone can register', 'presets' ),
-			'id'               => $this->slug . '_users_can_register',
-			'type'             => 'select',
-			'show_option_none' => ' ',
-			'default'          => 'custom',
-			'options'          => array(
-				0 => __( 'No', 'presets' ),
-				1 => __( 'Yes', 'presets' ),
-			),
-			'classes' => $classes,
-		)
+				'name'             => __( 'Anyone can register', 'presets' ),
+				'id'               => $this->slug . '_users_can_register',
+				'type'             => 'select',
+				'show_option_none' => ' ',
+				'default'          => 'custom',
+				'options'          => array(
+					0 => __( 'No', 'presets' ),
+					1 => __( 'Yes', 'presets' ),
+				),
+				'classes'          => $classes,
+			)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
-			'name'             => __( 'Site Language', 'presets' ),
-			'id'               => $this->slug . '_WPLANG',
-			'type'             => 'select',
-			'show_option_none' => ' ',
-			'default'          => 'custom',
-			'options'          => $this->languageOptions(),
-			'classes' => $classes,
-		)
+				'name'             => __( 'Site Language', 'presets' ),
+				'id'               => $this->slug . '_WPLANG',
+				'type'             => 'select',
+				'show_option_none' => ' ',
+				'default'          => 'custom',
+				'options'          => $this->languageOptions(),
+				'classes'          => $classes,
+			)
 		);
 
 	}
@@ -118,6 +118,7 @@ class GeneralSettings extends ActionBase {
 			if ( empty( $entry['action_type'] ) ) {
 				return;
 			}
+
 			if ( $entry['action_type'] != $this->slug ) {
 				return;
 			}
@@ -144,20 +145,14 @@ class GeneralSettings extends ActionBase {
 					if ( 'WPLANG' === $field ) {
 		
 						if ( 'en_US' === $entry[$prefix . 'WPLANG'] ) {
-		
 							update_option( $field, '' );
-
 						} else {
-				
 							wp_download_language_pack( $entry[$prefix . 'WPLANG'] );
 							update_option( $field, $entry[$prefix . 'WPLANG'] );
-
 						}
 					
 					} else {
-
 						update_option( $field, $entry[$prefix . $field] );
-		
 					}
 				}
 			}
