@@ -21,10 +21,33 @@ abstract class ActionBase {
 		$this->description = $description;
     }
 
+	/**
+	 * Create action fields.
+	 * 
+	 * Create action fields from $metabox CMB2 object, adding then to the $group.
+	 * All fields are attached to the same group.
+	 *
+	 * @param object $metabox
+	 * @param string $group
+	 */
 	abstract public function createFields($metabox, $group);
 
+	/**
+	 * Apply module action.
+	 * 
+	 * Given the preset post ID, apply the module action.
+	 *
+	 * @param int $id  Preset post ID.
+	 */
 	abstract public function applyAction($id);
 
+	/**
+	 * Create select option for the action.
+	 * 
+	 * Create select option for the metabox given the action slug and name.
+	 *
+	 * @param array $actions  Array of existent actions.
+	 */
 	public function createSelectOption($actions) {
 		$actions[$this->slug] = $this->name;
 		return $actions;
