@@ -28,10 +28,6 @@ function presets_plugin_filename() {
 	return str_replace( plugin_dir_path( __DIR__ ), '', $dir = plugin_dir_path( __FILE__ ) ) . 'presets.php';
 }
 
-// Settings
-require_once plugin_dir_path( __FILE__ ) . 'src/settings/advanced-settings.php';
-require_once plugin_dir_path( __FILE__ ) . 'src/settings/helpers.php';
-
 // Modules
 new Modules\LoadModules;
 
