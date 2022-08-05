@@ -6,6 +6,11 @@ use Presets\Actions\ActionBase;
 
 class GeneralSettings extends ActionBase {
 
+	/**
+	 * Get all the language options avaliable on WordPress and return a formated array.
+	 * 
+	 * @return array $options Array of language with the language slug as the key and the language name as the value.
+	 */
 	private function languageOptions() {
 
 		require_once ABSPATH . 'wp-admin/includes/translation-install.php';
@@ -28,6 +33,14 @@ class GeneralSettings extends ActionBase {
 
 	}
 
+	/**
+	 * Create fields for selecting the language to activate.
+	 * 
+	 * @param  object $metabox The CMB2 metabox object.
+	 * @param  string $group    The slug of the repeater group that has all the fields.
+	 * 
+	 * @return void
+	 */
 	public function createFields($metabox, $group) {
 
 		$classes = $this->slug . ' hide';
@@ -89,6 +102,14 @@ class GeneralSettings extends ActionBase {
 
 	}
 
+	/**
+	 * Save the fields.
+	 * 
+	 * @param  object $metabox The CMB2 metabox object.
+	 * @param  string $group    The slug of the repeater group with all the fields.
+	 * 
+	 * @return void
+	 */
 	public function applyAction($id) {
 
 		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true );
