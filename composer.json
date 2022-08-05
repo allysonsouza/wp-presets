@@ -3,7 +3,8 @@
     "type": "wordpress-plugin",
     "license": "GPLv2",
     "require": {
-        "cmb2/cmb2": "dev-master"
+        "cmb2/cmb2": "dev-master",
+        "squizlabs/php_codesniffer": "*"
     },
 	"autoload": {
         "psr-4": {
