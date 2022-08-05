@@ -8,7 +8,8 @@
     },
 	"autoload": {
         "psr-4": {
-            "Presets\\": "src/"
+            "Presets\\": "src/",
+			"Presets\\Modules\\": "modules/"
         },
         "files": ["vendor/cmb2/cmb2/init.php"]
     }

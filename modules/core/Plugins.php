@@ -1,8 +1,10 @@
 <?php
 
+namespace Presets\Modules\Core;
+
 use Presets\Actions\ActionBase;
 
-class CorePlugins extends ActionBase {
+class Plugins extends ActionBase {
 
 	/**
 	 * Get all the installed plugins and return a formated array.
@@ -127,9 +129,3 @@ class CorePlugins extends ActionBase {
 		}
 	}
 }
-
-$obj = new CorePlugins(
-	'core-plugins',
-	__( '[Core] Plugins', 'presets' ),
-	__( 'Plugins to activate/deactivate for WordPress', 'presets' )
-);

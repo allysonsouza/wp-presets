@@ -1,13 +1,16 @@
 <?php
 
-function presets_module_woocommerce_activate() {
+namespace Presets\Modules\WooCommerce;
 
-	if ( class_exists( 'woocommerce' ) ) {
+class Module {
 
-		require_once plugin_dir_path( __FILE__ ) . 'GeneralSettings.php';
-
+	public function __construct() {
+		add_action( 'init', [ $this, 'presets_module_woocommerce_activate' ] );
 	}
 
+	public function presets_module_woocommerce_activate() {
+		if ( class_exists( '\woocommerce' ) ) {
+			new GeneralSettings;
+		}
+	}
 }
-
-add_action( 'init', 'presets_module_woocommerce_activate' );

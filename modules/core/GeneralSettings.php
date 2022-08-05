@@ -1,8 +1,10 @@
 <?php
 
+namespace Presets\Modules\Core;
+
 use Presets\Actions\ActionBase;
 
-class CoreGeneralSettings extends ActionBase {
+class GeneralSettings extends ActionBase {
 
 	private function languageOptions() {
 
@@ -144,9 +146,3 @@ class CoreGeneralSettings extends ActionBase {
 		}
 	}
 }
-
-$obj = new CoreGeneralSettings(
-	'core-general-settings',
-	__( '[Core] General Settings ABC', 'presets' ),
-	__( 'General settings for the site', 'presets' )
-);

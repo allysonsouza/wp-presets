@@ -17,6 +17,7 @@ use Presets\Taxonomy;
 use Presets\PostTypes;
 use Presets\Actions;
 use Presets\Triggers;
+use Presets\Modules;
 
 /**
  * Function outputs the plugin directory with the root file name.
@@ -30,15 +31,15 @@ require_once plugin_dir_path( __FILE__ ) . 'src/settings/advanced-settings.php';
 require_once plugin_dir_path( __FILE__ ) . 'src/settings/helpers.php';
 
 // Modules
-require_once plugin_dir_path( __FILE__ ) . 'modules/modules.php';
+new Modules\LoadModules;
 
 // Objects creation
-new Notes\Notes();
-new Taxonomy\Tags();
-new PostTypes\Presets();
-new Actions\Fields();
-new Actions\Implementation();
-new Triggers\WPAdminBar();
+new Notes\Notes;
+new Taxonomy\Tags;
+new PostTypes\Presets;
+new Actions\Fields;
+new Actions\Implementation;
+new Triggers\WPAdminBar;
 
 /**
  * Enqueue the plugin scripts and styles on admin.

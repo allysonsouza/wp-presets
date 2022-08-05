@@ -1,6 +1,10 @@
 <?php
 
-class WooCommerceGeneralSettings {
+namespace Presets\Modules\WooCommerce;
+
+use Presets\Actions\ActionBase;
+
+class GeneralSettings extends ActionBase {
 	/**
      * Constructor
      */
@@ -208,5 +212,3 @@ class WooCommerceGeneralSettings {
 		}
 	}
 }
-
-$obj = new WooCommerceGeneralSettings;

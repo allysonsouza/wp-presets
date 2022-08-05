@@ -1,10 +1,26 @@
 <?php
 
-function presets_module_core_activate() {
+namespace Presets\Modules\Core;
 
-	require_once plugin_dir_path( __FILE__ ) . 'GeneralSettings.php';
-	require_once plugin_dir_path( __FILE__ ) . 'Plugins.php';
+class Module {
 
+	public function __construct() {
+		add_action( 'init', [ $this, 'presets_module_core_activate' ] );
+	}
+
+	public function presets_module_core_activate() {
+
+		new GeneralSettings(
+			'core-general-settings',
+			__( '[Core] General Settings ABC', 'presets' ),
+			__( 'General settings for the site', 'presets' )
+		);
+
+		new Plugins(
+			'core-plugins',
+			__( '[Core] Plugins', 'presets' ),
+			__( 'Plugins to activate/deactivate for WordPress', 'presets' )
+		);
+
+	}
 }
-
-add_action( 'init', 'presets_module_core_activate' );
