@@ -15,6 +15,11 @@ class Implementation {
 
 	/**
 	 * Apply actions.
+	 * 
+	 * Given the 'presets-trigger' url parameter, apply the according action.
+	 * It's expected that 'presets-trigger' is a valid preset ID.
+	 * 
+	 * @return void
 	 */
 	public function applyActions() {
 
@@ -29,7 +34,11 @@ class Implementation {
 		}
 	
 		/**
-		 * presets_apply_meta hook.
+		 * Trigger presets_apply_meta action hook.
+		 * 
+		 * This hook can be used by actions to append their routines when the trigger is fired.
+		 * 
+		 * @param int $preset_id  Preset post ID.
 		 */
 		do_action( 'presets_apply_meta', $preset_id );
 	
@@ -37,6 +46,8 @@ class Implementation {
 
 	/**
 	 * Redirect after presets have been applied.
+	 * 
+	 * @return void
 	 */
 	public function redirectSuccess() {
 
@@ -55,6 +66,8 @@ class Implementation {
 
 	/**
 	 * Display notice after action confirmation.
+	 * 
+	 * @return void
 	 */
 	public function successAdminNotice() {
 
