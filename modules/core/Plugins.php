@@ -32,7 +32,7 @@ class CorePlugins extends ActionBase {
 	 * Create fields for selecting the plugins to activate/deactivate.
 	 * 
 	 * @param  object $metabox The CMB2 metabox object.
-	 * @param  string $group    The slug of the repeater group with all the fields.
+	 * @param  string $group    The slug of the repeater group that has all the fields.
 	 * 
 	 * @return void
 	 */
@@ -67,28 +67,16 @@ class CorePlugins extends ActionBase {
 	}
 
 	/**
-	 * Deactivate the selected plugins.
-	 */
-	function deactivatePlugins() {
-
-		// The Presets plugin, the plugins that were skipped on the plugins settings, and the plugins that were selected to be activated should be skipped on the filter as default.
-		// $skip_deactivate_plugins = array_merge( array( presets_plugin_filename() ), presets_selected_plugins(), presets_get_option_skipped_plugins() );
-
-		// Deactivate only the ones that are currenly activated.
-		$deactivate_plugins = array_diff( get_option( 'active_plugins' ), $skip_deactivate_plugins );
-
-		deactivate_plugins( $deactivate_plugins );
-
-	}
-
-	/**
 	 * Activate/Deactivate plugins.
 	 * 
 	 * @param  int $id The preset post ID.
+	 * 
+	 * @return void
 	 */
 	public function applyAction($id) {
 
-		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true ); // Get all the entries values for this post ID.
+		// Get all the entries values for this post ID.
+		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true );
 
 		foreach ( (array) $entries as $entry ) {
 			
