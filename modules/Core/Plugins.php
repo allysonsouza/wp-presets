@@ -85,7 +85,7 @@ class Plugins extends ActionBase {
 		foreach ( (array) $entries as $entry ) {
 			
 			if ( empty( $entry['action_type'] ) || $entry['action_type'] != $this->slug ) {
-				return;
+				continue;
 			}
 
 			$prefix = $this->slug . "_";

@@ -190,11 +190,8 @@ class GeneralSettings extends ActionBase {
 
 		foreach ( (array) $entries as $key => $entry ) {
 			
-			if ( empty( $entry['action_type'] ) ) {
-				return;
-			}
-			if ( $entry['action_type'] != $this->slug ) {
-				return;
+			if ( empty( $entry['action_type'] ) || $entry['action_type'] != $this->slug ) {
+				continue;
 			}
 
 			$prefix = $this->slug . "_";
