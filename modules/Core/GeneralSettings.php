@@ -47,34 +47,34 @@ class GeneralSettings extends ActionBase {
 			$group,
 			array(
 				'name'    => __( 'Site Title', 'presets' ),
-				'id'      => $this->prefix . 'blogname',
+				'id'      => $this->fieldID('blogname'),
 				'type'    => 'text',
-				'classes' => $this->field_element_classes,
+				'classes' => $this->field_classes,
 			)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
 				'name'    => __( 'Tagline', 'presets' ),
-				'id'      => $this->prefix . 'blogdescription',
+				'id'      => $this->fieldID('blogdescription'),
 				'type'    => 'text',
-				'classes' => $this->field_element_classes,
+				'classes' => $this->field_classes,
 			)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
 			'name'    => __( 'Administration Email Address', 'presets' ),
-			'id'      => $this->prefix . 'admin_email',
+			'id'      => $this->fieldID('admin_email'),
 			'type'    => 'text_email',
-			'classes' => $this->field_element_classes,
+			'classes' => $this->field_classes,
 		)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
 				'name'             => __( 'Anyone can register', 'presets' ),
-				'id'               => $this->prefix . 'users_can_register',
+				'id'               => $this->fieldID('users_can_register'),
 				'type'             => 'select',
 				'show_option_none' => ' ',
 				'default'          => 'custom',
@@ -82,19 +82,19 @@ class GeneralSettings extends ActionBase {
 					0 => __( 'No', 'presets' ),
 					1 => __( 'Yes', 'presets' ),
 				),
-				'classes'          => $this->field_element_classes,
+				'classes'          => $this->field_classes,
 			)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
 				'name'             => __( 'Site Language', 'presets' ),
-				'id'               => $this->prefix . 'WPLANG',
+				'id'               => $this->fieldID('WPLANG'),
 				'type'             => 'select',
 				'show_option_none' => ' ',
 				'default'          => 'custom',
 				'options'          => $this->languageOptions(),
-				'classes'          => $this->field_element_classes,
+				'classes'          => $this->field_classes,
 			)
 		);
 
@@ -109,15 +109,7 @@ class GeneralSettings extends ActionBase {
 	 */
 	public function applyAction($entry) {
 
-		$fields = array(
-			'blogname',
-			'blogdescription',
-			'admin_email',
-			'users_can_register',
-			'WPLANG',
-		);
-	
-		foreach ( $fields as $field ) {
+		foreach ( $this->fields as $field ) {
 
 			if ( empty($entry[$this->prefix . $field])) {
 				continue;

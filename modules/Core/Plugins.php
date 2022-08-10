@@ -47,10 +47,10 @@ class Plugins extends ActionBase {
 			array(
 				'name'    => __( 'Deactivate Plugins', 'presets' ),
 				'desc'    => __( 'Select the plugins that should get deactivated when this preset gets triggered.', 'presets' ),
-				'id'      => $this->prefix . 'deactivate',
+				'id'      => $this->fieldID('deactivate'),
 				'type'    => 'multicheck',
 				'options' => $this->getAvaliablePlugins(),
-				'classes' => $this->field_element_classes,
+				'classes' => $this->field_classes,
 			),
 		);
 
@@ -59,10 +59,10 @@ class Plugins extends ActionBase {
 			array(
 				'name'    => __( 'Activate Plugins', 'presets' ),
 				'desc'    => __( 'Select the plugins that should get activated when this preset gets triggered.', 'presets' ),
-				'id'      => $this->prefix . 'activate',
+				'id'      => $this->fieldID('activate'),
 				'type'    => 'multicheck',
 				'options' => $this->getAvaliablePlugins(),
-				'classes' => $this->field_element_classes,
+				'classes' => $this->field_classes,
 			),
 		);
 
@@ -76,15 +76,9 @@ class Plugins extends ActionBase {
 	 * @return void
 	 */
 	public function applyAction($entry) {
-
-		// Action fields slugs.
-		$fields = array(
-			'deactivate',
-			'activate',
-		);
 	
 		// Loop through all the fields and activate/deactivate the plugins.
-		foreach ( $fields as $field ) {
+		foreach ( $this->fields as $field ) {
 
 			if (empty($entry[$this->prefix . $field])) {
 				continue;

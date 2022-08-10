@@ -57,7 +57,7 @@ class GeneralSettings extends ActionBase {
 			'name' => __( 'Store Address', 'woocommerce' ),
 			'type' => 'title',
 			'id'   => $this->prefix . 'title-1',
-			'classes' => $this->field_element_classes,
+			'classes' => $this->field_classes,
 			)
 		);
 
@@ -65,9 +65,9 @@ class GeneralSettings extends ActionBase {
 			$group,
 			array(
 			'name' => __( 'Address line 1', 'woocommerce' ),
-			'id'   => $this->prefix . 'woocommerce_store_address',
+			'id'   => $this->fieldID('woocommerce_store_address'),
 			'type' => 'text',
-			'classes' => $this->field_element_classes,
+			'classes' => $this->field_classes,
 			)
 		);
 
@@ -184,20 +184,7 @@ class GeneralSettings extends ActionBase {
 	 */
 	public function applyAction($entry) {
 
-		$fields = array(
-			'woocommerce_store_address',
-	/* 		'woocommerce_store_address_2',
-			'woocommerce_store_city',
-			'woocommerce_default_country',
-			'woocommerce_store_postcode',
-			'woocommerce_currency',
-			'woocommerce_currency_pos',
-			'woocommerce_price_thousand_sep',
-			'woocommerce_price_decimal_sep',
-			'woocommerce_price_num_decimals', */
-		);
-
-		foreach ( $fields as $field ) {
+		foreach ( $this->fields as $field ) {
 
 			if ( empty($entry[$this->prefix . $field])) {
 				continue;

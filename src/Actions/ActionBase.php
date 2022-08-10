@@ -8,7 +8,8 @@ abstract class ActionBase {
 	public $prefix;
 	public $name;
 	public $description;
-	public $field_element_classes;
+	public $field_classes;
+	public $fields;
 
 	/**
      * Constructor
@@ -17,7 +18,7 @@ abstract class ActionBase {
 
 		$this->slug = $slug;
 		$this->prefix = 'presets_' . $slug . '_';
-		$this->field_element_classes = $slug . ' hide';
+		$this->field_classes = $slug . ' hide';
 		$this->name = $name;
 		$this->description = $description;
 
@@ -57,5 +58,28 @@ abstract class ActionBase {
 	public function createSelectOption($actions) {
 		$actions[$this->slug] = $this->name;
 		return $actions;
+	}
+
+	/**
+	 * Adding the field slugs to the array of fields.
+	 * 
+	 * @param string $field  Field slug.
+	 * 
+	 * @return void
+	 */
+	public function addField($field) {
+		$this->fields[] = $field;
+	}
+
+	/**
+	 * Return the prefixed field slug and run the method addField.
+	 * 
+	 * @param string $id  Field slug.
+	 * 
+	 * @return string		The prefixed Field ID.
+	 */
+	public function fieldID($id) {
+		$this->addField($id);
+		return $this->prefix . $id;
 	}
 }
