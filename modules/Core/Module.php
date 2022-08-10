@@ -8,6 +8,11 @@ class Module {
 		add_action( 'init', [ $this, 'presets_module_core_activate' ] );
 	}
 
+	/**
+	 * Instantiate the module actions.
+	 * 
+	 * @return void
+	 */
 	public function presets_module_core_activate() {
 
 		new GeneralSettings(

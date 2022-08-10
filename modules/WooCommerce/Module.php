@@ -8,6 +8,11 @@ class Module {
 		add_action( 'init', [ $this, 'presets_module_woocommerce_activate' ] );
 	}
 
+	/**
+	 * Instantiate the module actions if WooCommerce plugin is activated.
+	 * 
+	 * @return void
+	 */
 	public function presets_module_woocommerce_activate() {
 		if ( class_exists( '\woocommerce' ) ) {
 			new GeneralSettings(

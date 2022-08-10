@@ -12,12 +12,14 @@
 
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-use Presets\Notes;
-use Presets\Taxonomy;
-use Presets\PostTypes;
-use Presets\Actions;
-use Presets\Triggers;
-use Presets\Modules;
+use Presets\ {
+	Notes,
+    Taxonomy,
+    PostTypes,
+    Actions,
+	Triggers,
+	Modules
+};
 
 /**
  * Function outputs the plugin directory with the root file name.
