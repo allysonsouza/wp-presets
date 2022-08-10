@@ -73,47 +73,38 @@ class Plugins extends ActionBase {
 	/**
 	 * Activate/Deactivate plugins.
 	 * 
-	 * @param  int $id The preset post ID.
+	 * @param  array $entry Preset entry with action type and action data.
 	 * 
 	 * @return void
 	 */
-	public function applyAction($id) {
+	public function applyAction($entry) {
 
-		// Get all the entries values for this post ID.
-		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true );
+		$prefix = $this->slug . "_";
 
-		foreach ( (array) $entries as $entry ) {
-			
-			if ( empty( $entry['action_type'] ) || $entry['action_type'] != $this->slug ) {
+		// Action fields slugs.
+		$fields = array(
+			'deactivate',
+			'activate',
+		);
+	
+		// Loop through all the fields and activate/deactivate the plugins.
+		foreach ( $fields as $field ) {
+
+			if (empty($entry[$prefix . $field])) {
 				continue;
 			}
-
-			$prefix = $this->slug . "_";
-
-			// Action fields slugs.
-			$fields = array(
-				'activate',
-				'deactivate',
-			);
 		
-			// Loop through all the fields and activate/deactivate the plugins.
-			foreach ( $fields as $field ) {
+			if ( array_key_exists( $prefix . $field, $entry ) ) {
 
-				if (empty($entry[$prefix . $field])) {
-					continue;
+				if ( 'activate' === $field ) {
+					activate_plugins( $entry[$prefix . $field] );
 				}
-			
-				if ( array_key_exists( $prefix . $field, $entry ) ) {
-
-					if ( 'activate' === $field ) {
-						activate_plugins( $entry[$prefix . $field] );
-					}
-						
-					if ( 'deactivate' === $field ) {
-						deactivate_plugins( $entry[$prefix . $field] );
-					}
+					
+				if ( 'deactivate' === $field ) {
+					deactivate_plugins( $entry[$prefix . $field] );
 				}
 			}
+		
 		}
 	}
 }

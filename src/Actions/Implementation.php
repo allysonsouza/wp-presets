@@ -32,15 +32,28 @@ class Implementation {
 		if ( get_post_type( $preset_id ) !== 'presets' ) {
 			return;
 		}
+
+		// Get all the entries values for this preset ID.
+		$entries = get_post_meta( $preset_id, 'preset_actions_repeat_group', true );
+
+		foreach ( (array) $entries as $entry ) {
+			
+			$action_type = $entry['action_type'];
+
+			if ( empty( $action_type ) ) {
+				continue;
+			}
 	
-		/**
-		 * Trigger presets_apply_meta action hook.
-		 * 
-		 * This hook can be used by actions to append their routines when the trigger is fired.
-		 * 
-		 * @param int $preset_id  Preset post ID.
-		 */
-		do_action( 'presets_apply_meta', $preset_id );
+			/**
+			 * Trigger presets_apply_action_{$action_type} action hook.
+			 * 
+			 * This hook can be used by actions to append their routines when the trigger is fired.
+			 * 
+			 * @param array $entry  Preset entry with action type and action data.
+			 */
+			do_action( 'presets_apply_action_' . $action_type, $entry );
+			
+		}
 	
 	}
 

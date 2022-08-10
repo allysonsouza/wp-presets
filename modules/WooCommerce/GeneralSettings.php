@@ -42,7 +42,7 @@ class GeneralSettings extends ActionBase {
 	}
 
 	/**
-	 * Create fields for selecting the language to activate.
+	 * Create fields for the WooCommerce general settings.
 	 * 
 	 * @param  object $metabox The CMB2 metabox object.
 	 * @param  string $group    The slug of the repeater group that has all the fields.
@@ -178,46 +178,37 @@ class GeneralSettings extends ActionBase {
 
 
 	/**
-	 * Activate/Deactivate plugins.
+	 * Apply the settings to the WooCommerce settings page.
 	 * 
-	 * @param  int $id The preset post ID.
+	 * @param  array $entry Preset entry with action type and action data.
 	 * 
 	 * @return void
 	 */
-	public function applyAction($id) {
+	public function applyAction($entry) {
 
-		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true );
+		$prefix = $this->slug . "_";
 
-		foreach ( (array) $entries as $key => $entry ) {
-			
-			if ( empty( $entry['action_type'] ) || $entry['action_type'] != $this->slug ) {
+		$fields = array(
+			'woocommerce_store_address',
+	/* 		'woocommerce_store_address_2',
+			'woocommerce_store_city',
+			'woocommerce_default_country',
+			'woocommerce_store_postcode',
+			'woocommerce_currency',
+			'woocommerce_currency_pos',
+			'woocommerce_price_thousand_sep',
+			'woocommerce_price_decimal_sep',
+			'woocommerce_price_num_decimals', */
+		);
+
+		foreach ( $fields as $field ) {
+
+			if ( empty($entry[$prefix . $field])) {
 				continue;
 			}
 
-			$prefix = $this->slug . "_";
-	
-			$fields = array(
-				'woocommerce_store_address',
-		/* 		'woocommerce_store_address_2',
-				'woocommerce_store_city',
-				'woocommerce_default_country',
-				'woocommerce_store_postcode',
-				'woocommerce_currency',
-				'woocommerce_currency_pos',
-				'woocommerce_price_thousand_sep',
-				'woocommerce_price_decimal_sep',
-				'woocommerce_price_num_decimals', */
-			);
-
-			foreach ( $fields as $field ) {
-
-				if ( empty($entry[$prefix . $field])) {
-					continue;
-				}
-
-				if ( array_key_exists( $prefix . $field, $entry ) ) {
-					update_option( $field, $entry[$prefix . $field] );
-				}
+			if ( array_key_exists( $prefix . $field, $entry ) ) {
+				update_option( $field, $entry[$prefix . $field] );
 			}
 		}
 	}

@@ -12,13 +12,15 @@ abstract class ActionBase {
      * Constructor
      */
     public function __construct($slug, $name, $description) {
-        add_action( 'presets_create_metabox', array( $this, 'createFields' ), 10, 2 );
-		add_action( 'presets_apply_meta', array( $this, 'applyAction' ), 10, 1 );
-		add_filter( 'presets_action_select', array( $this, 'createSelectOption' ), 10, 1 );
 
 		$this->slug = $slug;
 		$this->name = $name;
 		$this->description = $description;
+		
+        add_action( 'presets_create_metabox', array( $this, 'createFields' ), 10, 2 );
+		add_action( 'presets_apply_action_' . $slug, array( $this, 'applyAction' ), 10, 1 );
+		add_filter( 'presets_action_select', array( $this, 'createSelectOption' ), 10, 1 );
+
     }
 
 	/**

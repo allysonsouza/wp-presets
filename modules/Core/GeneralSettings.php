@@ -105,51 +105,42 @@ class GeneralSettings extends ActionBase {
 	/**
 	 * Save fields.
 	 * 
-	 * @param  int $id The preset post ID.
+	 * @param  array $entry Preset entry with action type and action data.
 	 * 
 	 * @return void
 	 */
-	public function applyAction($id) {
+	public function applyAction($entry) {
 
-		$entries = get_post_meta( $id, 'preset_actions_repeat_group', true );
+		$prefix = $this->slug . "_";
 
-		foreach ( (array) $entries as $key => $entry ) {
-			
-			if ( empty( $entry['action_type'] ) || $entry['action_type'] != $this->slug ) {
+		$fields = array(
+			'blogname',
+			'blogdescription',
+			'admin_email',
+			'users_can_register',
+			'WPLANG',
+		);
+	
+		foreach ( $fields as $field ) {
+
+			if ( empty($entry[$prefix . $field])) {
 				continue;
 			}
-
-			$prefix = $this->slug . "_";
-
-			$fields = array(
-				'blogname',
-				'blogdescription',
-				'admin_email',
-				'users_can_register',
-				'WPLANG',
-			);
 		
-			foreach ( $fields as $field ) {
-
-				if ( empty($entry[$prefix . $field])) {
-					continue;
-				}
-			
-				if ( array_key_exists( $prefix . $field, $entry ) ) {
-			
-					// Download the lang pack first if the site language is not yet installed.
-					if ( 'WPLANG' === $field ) {
+			if ( array_key_exists( $prefix . $field, $entry ) ) {
 		
-						if ( 'en_US' === $entry[$prefix . 'WPLANG'] ) {
-							update_option( $field, '' );
-						} else {
-							wp_download_language_pack( $entry[$prefix . 'WPLANG'] );
-							update_option( $field, $entry[$prefix . 'WPLANG'] );
-						}
-					
+				// Download the lang pack first if the site language is not yet installed.
+				if ( 'WPLANG' === $field ) {
+	
+					if ( 'en_US' === $entry[$prefix . 'WPLANG'] ) {
+						update_option( $field, '' );
 					} else {
-						update_option( $field, $entry[$prefix . $field] );
+						wp_download_language_pack( $entry[$prefix . 'WPLANG'] );
+						update_option( $field, $entry[$prefix . 'WPLANG'] );
 					}
+				
+				} else {
+					update_option( $field, $entry[$prefix . $field] );
 				}
 			}
 		}
