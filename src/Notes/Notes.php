@@ -9,7 +9,7 @@ class Notes {
      */
     public function __construct() {
         add_action( 'presets_create_metabox', array( $this, 'createNotesMetaBox' ) );
-		add_action( 'presets_admin_notice_sucess', array( $this, 'displayNotes' ) );
+		add_action( 'presets_admin_notice_success', array( $this, 'displayNotes' ) );
     }
 
 	/**
