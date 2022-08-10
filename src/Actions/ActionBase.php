@@ -5,8 +5,10 @@ namespace Presets\Actions;
 abstract class ActionBase {
 
 	public $slug;
+	public $prefix;
 	public $name;
 	public $description;
+	public $field_element_classes;
 
 	/**
      * Constructor
@@ -14,9 +16,11 @@ abstract class ActionBase {
     public function __construct($slug, $name, $description) {
 
 		$this->slug = $slug;
+		$this->prefix = 'presets_' . $slug . '_';
+		$this->field_element_classes = $slug . ' hide';
 		$this->name = $name;
 		$this->description = $description;
-		
+
         add_action( 'presets_create_metabox', array( $this, 'createFields' ), 10, 2 );
 		add_action( 'presets_apply_action_' . $slug, array( $this, 'applyAction' ), 10, 1 );
 		add_filter( 'presets_action_select', array( $this, 'createSelectOption' ), 10, 1 );

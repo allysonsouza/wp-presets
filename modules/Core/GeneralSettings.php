@@ -43,40 +43,38 @@ class GeneralSettings extends ActionBase {
 	 */
 	public function createFields($metabox, $group) {
 
-		$classes = $this->slug . ' hide';
-
 		$metabox->add_group_field( 
 			$group,
 			array(
 				'name'    => __( 'Site Title', 'presets' ),
-				'id'      => $this->slug . '_blogname',
+				'id'      => $this->prefix . 'blogname',
 				'type'    => 'text',
-				'classes' => $classes,
+				'classes' => $this->field_element_classes,
 			)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
 				'name'    => __( 'Tagline', 'presets' ),
-				'id'      => $this->slug . '_blogdescription',
+				'id'      => $this->prefix . 'blogdescription',
 				'type'    => 'text',
-				'classes' => $classes,
+				'classes' => $this->field_element_classes,
 			)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
 			'name'    => __( 'Administration Email Address', 'presets' ),
-			'id'      => $this->slug . '_admin_email',
+			'id'      => $this->prefix . 'admin_email',
 			'type'    => 'text_email',
-			'classes' => $classes,
+			'classes' => $this->field_element_classes,
 		)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
 				'name'             => __( 'Anyone can register', 'presets' ),
-				'id'               => $this->slug . '_users_can_register',
+				'id'               => $this->prefix . 'users_can_register',
 				'type'             => 'select',
 				'show_option_none' => ' ',
 				'default'          => 'custom',
@@ -84,19 +82,19 @@ class GeneralSettings extends ActionBase {
 					0 => __( 'No', 'presets' ),
 					1 => __( 'Yes', 'presets' ),
 				),
-				'classes'          => $classes,
+				'classes'          => $this->field_element_classes,
 			)
 		);
 
 		$metabox->add_group_field( $group,
 			array(
 				'name'             => __( 'Site Language', 'presets' ),
-				'id'               => $this->slug . '_WPLANG',
+				'id'               => $this->prefix . 'WPLANG',
 				'type'             => 'select',
 				'show_option_none' => ' ',
 				'default'          => 'custom',
 				'options'          => $this->languageOptions(),
-				'classes'          => $classes,
+				'classes'          => $this->field_element_classes,
 			)
 		);
 
@@ -111,8 +109,6 @@ class GeneralSettings extends ActionBase {
 	 */
 	public function applyAction($entry) {
 
-		$prefix = $this->slug . "_";
-
 		$fields = array(
 			'blogname',
 			'blogdescription',
@@ -123,24 +119,24 @@ class GeneralSettings extends ActionBase {
 	
 		foreach ( $fields as $field ) {
 
-			if ( empty($entry[$prefix . $field])) {
+			if ( empty($entry[$this->prefix . $field])) {
 				continue;
 			}
 		
-			if ( array_key_exists( $prefix . $field, $entry ) ) {
+			if ( array_key_exists( $this->prefix . $field, $entry ) ) {
 		
 				// Download the lang pack first if the site language is not yet installed.
 				if ( 'WPLANG' === $field ) {
 	
-					if ( 'en_US' === $entry[$prefix . 'WPLANG'] ) {
+					if ( 'en_US' === $entry[$this->prefix . 'WPLANG'] ) {
 						update_option( $field, '' );
 					} else {
-						wp_download_language_pack( $entry[$prefix . 'WPLANG'] );
-						update_option( $field, $entry[$prefix . 'WPLANG'] );
+						wp_download_language_pack( $entry[$this->prefix . 'WPLANG'] );
+						update_option( $field, $entry[$this->prefix . 'WPLANG'] );
 					}
 				
 				} else {
-					update_option( $field, $entry[$prefix . $field] );
+					update_option( $field, $entry[$this->prefix . $field] );
 				}
 			}
 		}

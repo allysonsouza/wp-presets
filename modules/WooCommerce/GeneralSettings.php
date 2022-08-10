@@ -51,15 +51,13 @@ class GeneralSettings extends ActionBase {
 	 */
 	public function createFields($metabox, $group) {
 
-		$classes = $this->slug . ' hide';
-
 		$metabox->add_group_field( 
 			$group,
 			array(
 			'name' => __( 'Store Address', 'woocommerce' ),
 			'type' => 'title',
-			'id'   => $this->slug . '_title-1',
-			'classes' => $classes,
+			'id'   => $this->prefix . 'title-1',
+			'classes' => $this->field_element_classes,
 			)
 		);
 
@@ -67,9 +65,9 @@ class GeneralSettings extends ActionBase {
 			$group,
 			array(
 			'name' => __( 'Address line 1', 'woocommerce' ),
-			'id'   => $this->slug . '_woocommerce_store_address',
+			'id'   => $this->prefix . 'woocommerce_store_address',
 			'type' => 'text',
-			'classes' => $classes,
+			'classes' => $this->field_element_classes,
 			)
 		);
 
@@ -186,8 +184,6 @@ class GeneralSettings extends ActionBase {
 	 */
 	public function applyAction($entry) {
 
-		$prefix = $this->slug . "_";
-
 		$fields = array(
 			'woocommerce_store_address',
 	/* 		'woocommerce_store_address_2',
@@ -203,12 +199,12 @@ class GeneralSettings extends ActionBase {
 
 		foreach ( $fields as $field ) {
 
-			if ( empty($entry[$prefix . $field])) {
+			if ( empty($entry[$this->prefix . $field])) {
 				continue;
 			}
 
-			if ( array_key_exists( $prefix . $field, $entry ) ) {
-				update_option( $field, $entry[$prefix . $field] );
+			if ( array_key_exists( $this->prefix . $field, $entry ) ) {
+				update_option( $field, $entry[$this->prefix . $field] );
 			}
 		}
 	}

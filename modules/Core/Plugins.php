@@ -42,17 +42,15 @@ class Plugins extends ActionBase {
 	 */
 	public function createFields($metabox, $group) {
 
-		$classes = $this->slug . ' hide';
-
 		$metabox->add_group_field( 
 			$group,
 			array(
 				'name'    => __( 'Deactivate Plugins', 'presets' ),
 				'desc'    => __( 'Select the plugins that should get deactivated when this preset gets triggered.', 'presets' ),
-				'id'      => $this->slug . '_deactivate',
+				'id'      => $this->prefix . 'deactivate',
 				'type'    => 'multicheck',
 				'options' => $this->getAvaliablePlugins(),
-				'classes' => $classes,
+				'classes' => $this->field_element_classes,
 			),
 		);
 
@@ -61,10 +59,10 @@ class Plugins extends ActionBase {
 			array(
 				'name'    => __( 'Activate Plugins', 'presets' ),
 				'desc'    => __( 'Select the plugins that should get activated when this preset gets triggered.', 'presets' ),
-				'id'      => $this->slug . '_activate',
+				'id'      => $this->prefix . 'activate',
 				'type'    => 'multicheck',
 				'options' => $this->getAvaliablePlugins(),
-				'classes' => $classes,
+				'classes' => $this->field_element_classes,
 			),
 		);
 
@@ -79,8 +77,6 @@ class Plugins extends ActionBase {
 	 */
 	public function applyAction($entry) {
 
-		$prefix = $this->slug . "_";
-
 		// Action fields slugs.
 		$fields = array(
 			'deactivate',
@@ -90,18 +86,18 @@ class Plugins extends ActionBase {
 		// Loop through all the fields and activate/deactivate the plugins.
 		foreach ( $fields as $field ) {
 
-			if (empty($entry[$prefix . $field])) {
+			if (empty($entry[$this->prefix . $field])) {
 				continue;
 			}
 		
-			if ( array_key_exists( $prefix . $field, $entry ) ) {
+			if ( array_key_exists( $this->prefix . $field, $entry ) ) {
 
 				if ( 'activate' === $field ) {
-					activate_plugins( $entry[$prefix . $field] );
+					activate_plugins( $entry[$this->prefix . $field] );
 				}
 					
 				if ( 'deactivate' === $field ) {
-					deactivate_plugins( $entry[$prefix . $field] );
+					deactivate_plugins( $entry[$this->prefix . $field] );
 				}
 			}
 		
