@@ -3,11 +3,14 @@
     "type": "wordpress-plugin",
     "license": "GPLv2",
     "require": {
+        "cmb2/cmb2": "dev-master",
         "squizlabs/php_codesniffer": "*"
     },
 	"autoload": {
         "psr-4": {
-            "Presets\\": "src/"
-        }
+            "Presets\\": "src/",
+			"Presets\\Modules\\": "modules/"
+        },
+        "files": ["vendor/cmb2/cmb2/init.php"]
     }
 }
