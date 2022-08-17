@@ -4,7 +4,7 @@ Tags: tests, debug
 Requires at least: 5.0
 Tested up to: 5.8
 Requires PHP: 7.0
-Stable tag: 1.0.0
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ The Presets plugin allows you to fill your WordPress with specific predefined se
 
 The Presets plugin allows you to fill your WordPress installation with previously defined settings in just a few seconds, allowing you to test it without the need to change the settings every time manually.
 
-Currently, you are able to change WordPress user meta details, core general settings, define plugins to be activated/deactivate, and WooCommerce initial support with some basic settings when a preset is triggered. The goal will be to bring more WordPress and WooCommerce settings. Also, we hope to make it easy in the long term to extend and bring more plugins settings.
+Currently, you can change WordPress core general settings, define plugins to be activated/deactivate, and WooCommerce initial support with some basic settings when a preset is triggered. The goal will be to bring more WordPress settings. Also, we hope to make it easy in the long term to extend and bring more plugin settings.
 
 This plugin hasn't been developed to be working on production sites, and it's mostly for testing plugins that require you to change the settings all the time.
 
@@ -44,6 +44,11 @@ You can see the repository here: https://github.com/felipelousantos/wp-presets
 
 
 == Changelog ==
+
+= 2.0.0 =
+- Recreated the code to OOP.
+- Removed the core user meta feature.
+- Removed the Plugins module settings.
 
 = 1.0.0 =
 Added notes feature.
