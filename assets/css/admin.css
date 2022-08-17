@@ -28,3 +28,7 @@
 .post-type-presets .cmb2-postbox .regular-text, .post-type-presets .cmb2-postbox .cmb2-wrap .cmb2-text-medium, .post-type-presets .cmb2-wrap select {
     width: 400px;
 }
+
+.hide {
+    display: none;
+}
