@@ -13,7 +13,7 @@ class GeneralSettings extends ActionBase {
 	 */
 	private function getLocations() {
 
-		$wc_countries = new WC_Countries();
+		$wc_countries = new \WC_Countries();
 
 		$countries = $wc_countries->get_countries();
 	
@@ -71,107 +71,120 @@ class GeneralSettings extends ActionBase {
 			)
 		);
 
-		/* $cmb->add_field(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name' => __( 'Address line 1', 'woocommerce' ),
-				'id'   => $prefix_meta . 'woocommerce_store_address',
-				'type' => 'text',
+			'name' => __( 'Address line 2', 'woocommerce' ),
+			'id'   => $this->fieldID('woocommerce_store_address_2'),
+			'type' => 'text',
+			'classes' => $this->field_classes,
 			)
 		);
 
-		$cmb->add_field(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name' => __( 'Address line 2', 'woocommerce' ),
-				'id'   => $prefix_meta . 'woocommerce_store_address_2',
-				'type' => 'text',
+			'name' => __( 'City', 'woocommerce' ),
+			'id'   => $this->fieldID('woocommerce_store_city'),
+			'type' => 'text',
+			'classes' => $this->field_classes,
 			)
 		);
 
-		$cmb->add_field(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name' => __( 'City', 'woocommerce' ),
-				'id'   => $prefix_meta . 'woocommerce_store_city',
-				'type' => 'text',
+			'name' => __( 'Country / State', 'woocommerce' ),
+			'id'   => $this->fieldID('woocommerce_default_country'),
+			'type' => 'select',
+			'show_option_none' => ' ',
+			'options' => $this->getLocations(),
+			'classes' => $this->field_classes,
 			)
 		);
 
-		$cmb->add_field(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name'             => __( 'Country / State', 'woocommerce' ),
-				'id'               => $prefix_meta . 'woocommerce_default_country',
-				'type'             => 'select',
-				'show_option_none' => ' ',
-				'default'          => 'custom',
-				'options'          => $this->getLocations(),
+			'name' => __( 'Postcode / ZIP', 'woocommerce' ),
+			'id'   => $this->fieldID('woocommerce_store_postcode'),
+			'type' => 'text',
+			'classes' => $this->field_classes,
 			)
 		);
 
-		$cmb->add_field(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name' => __( 'Postcode / ZIP', 'woocommerce' ),
-				'id'   => $prefix_meta . 'woocommerce_store_postcode',
-				'type' => 'text',
+			'name' => __( 'Currency options', 'woocommerce' ),
+			'type' => 'title',
+			'id'   => $this->prefix . 'title-2',
+			'classes' => $this->field_classes,
 			)
 		);
 
-		$cmb->add_field(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name' => __( 'Currency options', 'woocommerce' ),
-				'type' => 'title',
-				'id'   => $prefix_meta . 'title-2',
+			'name' => __( 'Currency', 'woocommerce' ),
+			'id'   => $this->fieldID('woocommerce_currency'),
+			'type' => 'select',
+			'show_option_none' => ' ',
+			'default'          => 'custom',
+			'options'          => get_woocommerce_currencies(), // WooCommerce function that returns full list of currency symbols and names - https://woocommerce.github.io/code-reference/namespaces/default.html#function_get_woocommerce_currencies
+			'classes' => $this->field_classes,
 			)
 		);
 
-		$cmb->add_field(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name'             => __( 'Currency', 'woocommerce' ),
-				'id'               => $prefix_meta . 'woocommerce_currency',
-				'type'             => 'select',
-				'show_option_none' => ' ',
-				'default'          => 'custom',
-				'options'          => get_woocommerce_currencies(), // WooCommerce function that returns full list of currency symbols and names - https://woocommerce.github.io/code-reference/namespaces/default.html#function_get_woocommerce_currencies
+			'name' => __( 'Currency position', 'woocommerce' ),
+			'id'   => $this->fieldID('woocommerce_currency_pos'),
+			'type' => 'select',
+			'show_option_none' => ' ',
+			'default'          => 'custom',
+			'options'          => array(
+				'left'        => __( 'Left', 'woocommerce' ),
+				'right'       => __( 'Right', 'woocommerce' ),
+				'left_space'  => __( 'Left with space', 'woocommerce' ),
+				'right_space' => __( 'Right with space', 'woocommerce' ),
+			),
+			'classes' => $this->field_classes,
 			)
 		);
 
-		$cmb->add_field(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name'             => __( 'Currency position', 'woocommerce' ),
-				'id'               => $prefix_meta . 'woocommerce_currency_pos',
-				'type'             => 'select',
-				'show_option_none' => ' ',
-				'default'          => 'custom',
-				'options'          => array(
-					'left'        => __( 'Left', 'woocommerce' ),
-					'right'       => __( 'Right', 'woocommerce' ),
-					'left_space'  => __( 'Left with space', 'woocommerce' ),
-					'right_space' => __( 'Right with space', 'woocommerce' ),
-				),
+			'name' => __( 'Thousand separator', 'woocommerce' ),
+			'id'   => $this->fieldID('woocommerce_price_thousand_sep'),
+			'type' => 'text_small',
+			'classes' => $this->field_classes,
 			)
 		);
 
-		$cmb->add_field(
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name' => __( 'Thousand separator', 'woocommerce' ),
-				'id'   => $prefix_meta . 'woocommerce_price_thousand_sep',
-				'type' => 'text_small',
+			'name' => __( 'Decimal separator', 'woocommerce' ),
+			'id'   => $this->fieldID('woocommerce_price_decimal_sep'),
+			'type' => 'text_small',
+			'classes' => $this->field_classes,
 			)
 		);
 
-		$cmb->add_field(
+
+		$metabox->add_group_field( 
+			$group,
 			array(
-				'name' => __( 'Decimal separator', 'woocommerce' ),
-				'id'   => $prefix_meta . 'woocommerce_price_decimal_sep',
-				'type' => 'text_small',
+			'name' => __( 'Number of decimals', 'woocommerce' ),
+			'id'   => $this->fieldID('woocommerce_price_num_decimals'),
+			'type' => 'text_small',
+			'classes' => $this->field_classes,
 			)
 		);
 
-		$cmb->add_field(
-			array(
-				'name' => __( 'Number of decimals', 'woocommerce' ),
-				'id'   => $prefix_meta . 'woocommerce_price_num_decimals',
-				'type' => 'text_small',
-			)
-		); */
 	}
 
 
