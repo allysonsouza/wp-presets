@@ -6,7 +6,7 @@
  * Author:          Presets contributors
  * Author URI:      https://github.com/felipelousantos/wp-presets/graphs/contributors
  * Text Domain:     presets
- * Version:         2.1.0
+ * Version:         2.1.1
  *
  * @package Presets
  */
