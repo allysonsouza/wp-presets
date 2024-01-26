@@ -11,5 +11,10 @@
         "psr-4": {
             "Presets\\": "src/"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
